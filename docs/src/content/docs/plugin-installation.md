@@ -74,6 +74,12 @@ Start a fresh session and explicitly select the installed skill. Prefer the
 marketplace route: the tested CLI warns that direct directory installation is
 deprecated. Headless slash expansion is not established by this installation test.
 
+## Choose your first workflow
+
+Once the plugin is installed, [choose a workflow](/aop-mode/guides/choose-a-workflow/)
+to see which request to use. The guide covers phrases such as `autopilot-stack`,
+`full autopilot`, and `get it green`, with examples and execution prerequisites.
+
 ## What installation establishes
 
 The [installation evaluation](/aop-mode/plugin-evaluation/) checks registration,

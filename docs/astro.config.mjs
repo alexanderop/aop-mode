@@ -29,6 +29,7 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
+            { label: 'Choose a workflow', slug: 'guides/choose-a-workflow' },
             { label: 'Review a change', slug: 'guides/review-change' },
             { label: 'Write documentation', slug: 'writing/write-documentation' },
           ],

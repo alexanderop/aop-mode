@@ -70,4 +70,5 @@ preserve the public API, and show the failing and passing checks.
 ```
 
 Follow [Fix your first bug](/aop-mode/first-workflow/) for a complete example using
-the evaluation suite, or read [how aop-mode works](/aop-mode/workflow/).
+the evaluation suite. Then [choose a workflow](/aop-mode/guides/choose-a-workflow/)
+for your next task, including autopilot, PR review, prototyping, and investigation.

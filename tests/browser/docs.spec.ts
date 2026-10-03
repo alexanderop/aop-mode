@@ -89,5 +89,13 @@ test('reader follows the walkthrough and reads diagrams in both themes', async (
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
   }
+  await page.goto('/aop-mode/workflow/');
+  await page.getByRole('link', { name: 'Choose a workflow', exact: true }).last().click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Choose a workflow');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+  await page.getByRole('link', { name: 'workflow pilot evidence', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Workflow pilot evidence');
   expect(errors).toEqual([]);
 });

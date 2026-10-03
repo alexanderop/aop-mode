@@ -34,6 +34,18 @@ and Codex wrappers also include `allow_implicit_invocation: false`. During an
 explicit task, a workflow can read the other upstream skills it depends on.
 Original Cursor `mode` and `reminder` metadata do not create a standing mode here.
 
+## Choose a workflow
+
+To select a playbook, describe the task after explicitly invoking the entrypoint.
+For example, `autopilot-stack` requests a verified PR stack for you to land;
+`full autopilot` requests independent PRs built through authorized merge.
+`Check on PR X` requests one status pass, while `get it green` requests work toward
+merge readiness. Neither PR-status phrase authorizes merging.
+
+Read [Choose a workflow](/aop-mode/guides/choose-a-workflow/) for trigger phrases,
+when to use each playbook, example requests, and the prerequisites for autonomous
+work. These are natural-language routing cues, not global activation commands.
+
 ## What the adapter changes
 
 Wrappers first load the target runtime contract, then the original skill in full.
