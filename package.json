@@ -9,7 +9,7 @@
     "dev": "astro dev --root docs --host 127.0.0.1 --ignore-lock",
     "docs:build": "astro build --root docs",
     "docs:preview": "astro preview --root docs --host 127.0.0.1 --ignore-lock",
-    "check": "tsc --noEmit && oxlint src tests scripts",
+    "check": "tsc --noEmit && pnpm lint && pnpm format:check",
     "test": "vitest run",
     "verify": "pnpm upstream:check && pnpm skills:build && pnpm check && pnpm test && pnpm docs:build",
     "skills:install": "tsx scripts/install.ts",
@@ -21,7 +21,11 @@
     "eval:workflows": "tsx scripts/evaluate-workflows.ts",
     "eval:regrade": "tsx scripts/regrade-workflow.ts",
     "plugins:pack": "tsx scripts/package-plugins.ts",
-    "eval:plugins": "tsx scripts/evaluate-plugin-install.ts"
+    "eval:plugins": "tsx scripts/evaluate-plugin-install.ts",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint --max-warnings 0 .",
+    "lint:fix": "oxlint --fix ."
   },
   "engines": {
     "node": ">=22.14"
@@ -37,6 +41,7 @@
     "ajv": "^8.20.0",
     "astro": "^7.3.5",
     "mermaid": "^12.1.0",
+    "oxfmt": "^0.71.0",
     "oxlint": "^1.86.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",

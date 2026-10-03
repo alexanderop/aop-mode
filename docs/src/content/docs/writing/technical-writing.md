@@ -15,12 +15,12 @@ that a tired engineer understands on the first read.
 The skill uses Diátaxis to distinguish four kinds of documentation. Each kind
 answers a different reader need.
 
-| Kind | Reader's need | Example for aop-mode |
-| --- | --- | --- |
-| Tutorial | Learn by completing a guided exercise | Install aop-mode in a sample project and complete a first repair |
-| How-to | Complete a specific task | Install aop-mode in an existing project |
-| Reference | Look up a fact | Find a skill name or supported installation location |
-| Explanation | Understand a decision | Understand why activation is explicit |
+| Kind        | Reader's need                         | Example for aop-mode                                             |
+| ----------- | ------------------------------------- | ---------------------------------------------------------------- |
+| Tutorial    | Learn by completing a guided exercise | Install aop-mode in a sample project and complete a first repair |
+| How-to      | Complete a specific task              | Install aop-mode in an existing project                          |
+| Reference   | Look up a fact                        | Find a skill name or supported installation location             |
+| Explanation | Understand a decision                 | Understand why activation is explicit                            |
 
 A tutorial should give the learner visible results as they work. A how-to assumes
 the reader knows the basics and needs steps toward a goal. Reference material
@@ -35,12 +35,12 @@ whether they need that background.
 
 Diátaxis supplies the document structure. The other layers apply to its sentences.
 
-| Layer | Rule applied to the document |
-| --- | --- |
-| Diátaxis | Choose tutorial, how-to, reference, or explanation before drafting |
-| Google developer style | Address the reader directly, use active voice, and give links descriptive names |
-| Simplified Technical English | Give one instruction at a time and use consistent terms |
-| Global English | Remove ambiguous pronouns, misplaced qualifiers, and idioms |
+| Layer                        | Rule applied to the document                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------- |
+| Diátaxis                     | Choose tutorial, how-to, reference, or explanation before drafting              |
+| Google developer style       | Address the reader directly, use active voice, and give links descriptive names |
+| Simplified Technical English | Give one instruction at a time and use consistent terms                         |
+| Global English               | Remove ambiguous pronouns, misplaced qualifiers, and idioms                     |
 
 The skill favors everyday words and removes words that add no meaning. It also
 asks for varied sentence lengths. A longer sentence can stay when it carries one

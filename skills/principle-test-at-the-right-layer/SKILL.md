@@ -1,6 +1,6 @@
 ---
 name: principle-test-at-the-right-layer
-description: "Apply when setting up frontend testing, implementing a feature, fixing a bug, or reviewing coverage. Choose tests by the behavior and failure they must expose."
+description: 'Apply when setting up frontend testing, implementing a feature, fixing a bug, or reviewing coverage. Choose tests by the behavior and failure they must expose.'
 disable-model-invocation: true
 ---
 

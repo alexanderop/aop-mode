@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": [
+    "vendor/**",
+    "node_modules/**",
+    "dist/**",
+    "docs/dist/**",
+    "**/.astro/**",
+    ".eval-artifacts/**",
+    "test-results/**",
+    "playwright-report/**"
+  ]
+}

@@ -5,7 +5,10 @@ export const brokenPager = `export function page<T>(items: readonly T[], number:
   return items.slice(number * size, number * size + size);
 }
 `;
-export const fixedPager = brokenPager.replace('number * size, number * size + size', '(number - 1) * size, number * size');
+export const fixedPager = brokenPager.replace(
+  'number * size, number * size + size',
+  '(number - 1) * size, number * size',
+);
 export const reviewSource = `export function canRead(document: { ownerId: string; public: boolean }, userId: string): boolean {
   return document.public || document.ownerId !== userId;
 }
@@ -25,14 +28,17 @@ import assert from 'node:assert/strict';
 import { page } from './src/page.ts';
 test('first page starts at the first item', () => assert.deepEqual(page(['a','b','c'], 1, 2), ['a','b']));
 `,
-      'package.json': '{"type":"module","scripts":{"test":"node --experimental-strip-types --test page.test.mjs"}}\n',
+      'package.json':
+        '{"type":"module","scripts":{"test":"node --experimental-strip-types --test page.test.mjs"}}\n',
     },
-    prompt: 'Fix src/page.ts. Pages are one-based; preserve input validation, order, and the input array. Run node --experimental-strip-types --test page.test.mjs before editing and after fixing. Keep the existing test unchanged. Return machine-readable final evidence using the format defined by the skill.',
+    prompt:
+      'Fix src/page.ts. Pages are one-based; preserve input validation, order, and the input array. Run node --experimental-strip-types --test page.test.mjs before editing and after fixing. Keep the existing test unchanged. Return machine-readable final evidence using the format defined by the skill.',
   },
   {
     id: 'review',
     files: { 'src/access.ts': reviewSource, 'package.json': '{"type":"module"}\n' },
-    prompt: 'Review src/access.ts. A public document is readable by anyone; a private document is readable only by its owner. Identify supported correctness findings with a concrete trigger and consequence. Do not edit or create files in the repository. Return machine-readable final evidence using the format defined by the skill.',
+    prompt:
+      'Review src/access.ts. A public document is readable by anyone; a private document is readable only by its owner. Identify supported correctness findings with a concrete trigger and consequence. Do not edit or create files in the repository. Return machine-readable final evidence using the format defined by the skill.',
   },
   {
     id: 'explicit-only',

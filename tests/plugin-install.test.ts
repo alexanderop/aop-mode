@@ -28,13 +28,20 @@ it('accepts a complete reference and rejects missing, modified, extra, and impli
       const candidate = join(root, kind);
       await cp(reference, candidate, { recursive: true });
       if (kind === 'missing') await rm(join(candidate, 'skills/aop-mode/SKILL.md'));
-      if (kind === 'modified') await writeFile(join(candidate, 'skills/aop-mode/runtime.md'), 'incorrect runtime');
+      if (kind === 'modified')
+        await writeFile(join(candidate, 'skills/aop-mode/runtime.md'), 'incorrect runtime');
       if (kind === 'extra') await writeFile(join(candidate, 'unexpected-hook.js'), 'auto activate');
-      if (kind === 'implicit') await writeFile(join(candidate, 'skills/aop-mode/agents/openai.yaml'), 'policy:\n  allow_implicit_invocation: true\n');
+      if (kind === 'implicit')
+        await writeFile(
+          join(candidate, 'skills/aop-mode/agents/openai.yaml'),
+          'policy:\n  allow_implicit_invocation: true\n',
+        );
       expect((await gradePluginInstallation(expected, candidate)).passed, kind).toBe(false);
     }
     expect((await gradePluginInstallation(expected, join(root, 'absent'))).passed).toBe(false);
-  } finally { await rm(root, { recursive: true, force: true }); }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 it('rejects zero-exit install claims when no files were installed', async () => {
@@ -44,14 +51,24 @@ it('rejects zero-exit install claims when no files were installed', async () => 
     const original = await vi.importActual<typeof import('../src/process.js')>('../src/process.js');
     vi.mocked(runProcess).mockImplementation((command, cwd, timeout, logs) => {
       if (command.executable === 'tar') return original.runProcess(command, cwd, timeout, logs);
-      return Effect.succeed({ exitCode: 0, stdout: 'aop-mode 0.1.0 0.1.0-installation-eval', stderr: '', timedOut: false, overflow: false });
+      return Effect.succeed({
+        exitCode: 0,
+        stdout: 'aop-mode 0.1.0 0.1.0-installation-eval',
+        stderr: '',
+        timedOut: false,
+        overflow: false,
+      });
     });
     const archive = await buildPluginRelease(join(root, 'release'));
-    const result = await Effect.runPromise(evaluatePluginInstall({ harness: 'claude', archive, artifactsRoot: root, timeoutMs: 1000 }));
+    const result = await Effect.runPromise(
+      evaluatePluginInstall({ harness: 'claude', archive, artifactsRoot: root, timeoutMs: 1000 }),
+    );
     workspace = result.workspace;
     expect(result.status).toBe('failed');
     expect(result.checks.find((check) => check.name === 'grader qualification')?.passed).toBe(true);
-    expect(result.checks.find((check) => check.name === 'install: complete installed package')?.passed).toBe(false);
+    expect(
+      result.checks.find((check) => check.name === 'install: complete installed package')?.passed,
+    ).toBe(false);
   } finally {
     await rm(root, { recursive: true, force: true });
     if (workspace) await rm(workspace, { recursive: true, force: true });
@@ -62,8 +79,23 @@ it('records unavailable CLIs as blocked instead of passing', async () => {
   const root = await mkdtemp(join(tmpdir(), 'aop-install-blocked-'));
   let workspace: string | undefined;
   try {
-    vi.mocked(runProcess).mockImplementation(() => Effect.succeed({ exitCode: 127, stdout: '', stderr: 'not found', timedOut: false, overflow: false }));
-    const result = await Effect.runPromise(evaluatePluginInstall({ harness: 'codex', archive: 'unused', artifactsRoot: root, timeoutMs: 1000 }));
+    vi.mocked(runProcess).mockImplementation(() =>
+      Effect.succeed({
+        exitCode: 127,
+        stdout: '',
+        stderr: 'not found',
+        timedOut: false,
+        overflow: false,
+      }),
+    );
+    const result = await Effect.runPromise(
+      evaluatePluginInstall({
+        harness: 'codex',
+        archive: 'unused',
+        artifactsRoot: root,
+        timeoutMs: 1000,
+      }),
+    );
     workspace = result.workspace;
     expect(result.status).toBe('blocked');
     expect(result.cliVersion).toBe('unavailable');

@@ -7,8 +7,22 @@ When requested, return a final JSON object (without Markdown fences):
   "workflow": "aop-mode",
   "kind": "repair",
   "summary": "Concrete result",
-  "checks": [{ "command": "node --test", "before": "failed", "after": "passed", "evidence": "Decisive output" }],
-  "findings": [{ "file": "src/example.ts", "line": 12, "trigger": "Specific input", "consequence": "Observable defect" }],
+  "checks": [
+    {
+      "command": "node --test",
+      "before": "failed",
+      "after": "passed",
+      "evidence": "Decisive output"
+    }
+  ],
+  "findings": [
+    {
+      "file": "src/example.ts",
+      "line": 12,
+      "trigger": "Specific input",
+      "consequence": "Observable defect"
+    }
+  ],
   "limits": []
 }
 ```

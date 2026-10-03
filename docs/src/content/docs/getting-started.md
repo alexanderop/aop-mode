@@ -45,10 +45,10 @@ a startup hook.
 Open a new coding-agent session in the target project so it discovers the skills.
 Use the invocation for your agent:
 
-| Agent | Installed location | Invocation |
-| --- | --- | --- |
+| Agent       | Installed location         | Invocation                         |
+| ----------- | -------------------------- | ---------------------------------- |
 | Claude Code | `.claude/skills/aop-mode/` | `/aop-mode Fix the pagination bug` |
-| Codex | `.agents/skills/aop-mode/` | `$aop-mode Fix the pagination bug` |
+| Codex       | `.agents/skills/aop-mode/` | `$aop-mode Fix the pagination bug` |
 | Copilot CLI | `.github/skills/aop-mode/` | `/aop-mode Fix the pagination bug` |
 
 Use the explicit command. A prose request alone may not activate the skill.

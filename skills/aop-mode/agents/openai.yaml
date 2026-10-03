@@ -1,6 +1,6 @@
 interface:
-  display_name: "aop-mode"
-  short_description: "Explicit workflows with observable verification"
-  default_prompt: "Use $aop-mode to complete this task and verify its outcome."
+  display_name: 'aop-mode'
+  short_description: 'Explicit workflows with observable verification'
+  default_prompt: 'Use $aop-mode to complete this task and verify its outcome.'
 policy:
   allow_implicit_invocation: false

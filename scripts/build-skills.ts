@@ -10,6 +10,10 @@ for (const harness of harnesses) {
     await writeDistribution(harness, stage);
     await rm(join(output, harness), { recursive: true, force: true });
     await rename(stage, join(output, harness));
-    console.log(`${harness}: 52 upstream skills + personal skills + aop-mode, ${join(output, harness)}`);
-  } finally { await rm(stage, { recursive: true, force: true }); }
+    console.log(
+      `${harness}: 52 upstream skills + personal skills + aop-mode, ${join(output, harness)}`,
+    );
+  } finally {
+    await rm(stage, { recursive: true, force: true });
+  }
 }

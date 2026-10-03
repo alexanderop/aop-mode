@@ -7,7 +7,9 @@ No startup hooks, global instruction edits, or implicit activation. Preserve exp
 - Evaluation lifecycle: `src/runner.ts`; independent outcome checks: `src/grade.ts`.
 - Keep logs and graders outside candidate workspaces. A zero exit is not a pass.
 - Each task must reject the broken fixture and accept its reference solution before live runs.
-- `pnpm verify`: types, lint, offline tests, Starlight build.
+- `pnpm format`: Oxfmt for first-party files. `pnpm lint` / `pnpm lint:fix`: Oxlint checks / safe fixes.
+- Never format `vendor/pstack/`, upstream locks, pinned schemas, or generated evidence.
+- `pnpm verify`: types, lint, formatting, offline tests, Starlight build.
 - `pnpm test:docs`: Playwright documentation journeys.
 - `pnpm test:harnesses`: live authenticated CLI calls; consumes provider usage.
 - Report tested CLI versions, tasks, and outcomes. Never turn blocked or untested into passing.

@@ -14,12 +14,28 @@
   --sl-color-bg: #ffffff;
   --sl-color-bg-nav: #f8f9fa;
 }
-.sl-markdown-content { line-height: 1.75; }
-h1 { letter-spacing: -0.035em; line-height: 1.15; }
-.sl-markdown-content :is(h2, h3) { letter-spacing: -0.02em; line-height: 1.3; }
-.sl-markdown-content h2 { margin-top: 2.75rem; }
-.sl-markdown-content table { font-size: 0.9rem; line-height: 1.6; }
-.site-title { font-weight: 650; letter-spacing: -0.04em; }
+.sl-markdown-content {
+  line-height: 1.75;
+}
+h1 {
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+.sl-markdown-content :is(h2, h3) {
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.sl-markdown-content h2 {
+  margin-top: 2.75rem;
+}
+.sl-markdown-content table {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.site-title {
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
 .diagram {
   margin: 2rem 0;
   padding: 1.5rem;
@@ -27,12 +43,37 @@ h1 { letter-spacing: -0.035em; line-height: 1.15; }
   border-radius: 0.5rem;
   background: var(--sl-color-bg-nav);
 }
-.diagram-canvas { overflow-x: auto; text-align: center; }
-.diagram-canvas svg { display: block; width: 100%; height: auto; max-height: 29rem; margin-inline: auto; }
-.diagram figcaption { margin-top: 1.25rem; font-size: 0.875rem; line-height: 1.65; color: var(--sl-color-gray-2); }
-.diagram details { margin-top: 0.75rem; font-size: 0.8rem; }
-.diagram summary { cursor: pointer; color: var(--sl-color-text-accent); }
-.diagram pre { overflow-x: auto; text-align: left; }
+.diagram-canvas {
+  overflow-x: auto;
+  text-align: center;
+}
+.diagram-canvas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 29rem;
+  margin-inline: auto;
+}
+.diagram figcaption {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--sl-color-gray-2);
+}
+.diagram details {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+.diagram summary {
+  cursor: pointer;
+  color: var(--sl-color-text-accent);
+}
+.diagram pre {
+  overflow-x: auto;
+  text-align: left;
+}
 @media (max-width: 40rem) {
-  .diagram { padding: 1rem 0.75rem; }
+  .diagram {
+    padding: 1rem 0.75rem;
+  }
 }

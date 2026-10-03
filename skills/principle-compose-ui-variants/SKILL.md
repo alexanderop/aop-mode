@@ -1,6 +1,6 @@
 ---
 name: principle-compose-ui-variants
-description: "Apply when UI variants duplicate shared behavior or accumulate props that select different component trees. Let consumers compose the parts they need."
+description: 'Apply when UI variants duplicate shared behavior or accumulate props that select different component trees. Let consumers compose the parts they need.'
 disable-model-invocation: true
 ---
 

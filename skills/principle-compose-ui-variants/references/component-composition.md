@@ -10,12 +10,12 @@ This hypothetical API makes the dialog own the edit form and its fields:
 
 ```vue
 <ConfigurableDialog
-	mode="edit-profile"
-	:show-header="true"
-	:show-footer="true"
-	:show-cancel="true"
-	v-model:name="profile.name"
-	v-model:bio="profile.bio"
+  mode="edit-profile"
+  :show-header="true"
+  :show-footer="true"
+  :show-cancel="true"
+  v-model:name="profile.name"
+  v-model:bio="profile.bio"
 />
 ```
 
@@ -34,73 +34,79 @@ pretend an asynchronous operation has finished.
 <script setup lang="ts">
 import { reactive } from 'vue';
 import {
-	DialogClose, DialogContent, DialogDescription, DialogOverlay,
-	DialogPortal, DialogRoot, DialogTitle, DialogTrigger,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
 } from 'reka-ui';
 
 const confirmOpen = defineModel<boolean>('confirmOpen', { required: true });
 const editOpen = defineModel<boolean>('editOpen', { required: true });
 const profile = reactive({ name: '', bio: '' });
 const emit = defineEmits<{
-	confirm: [];
-	save: [profile: { name: string; bio: string }];
+  confirm: [];
+  save: [profile: { name: string; bio: string }];
 }>();
 </script>
 
 <template>
-	<DialogRoot v-model:open="confirmOpen">
-		<DialogTrigger>Sign out</DialogTrigger>
-		<DialogPortal>
-			<DialogOverlay class="dialog-overlay" />
-			<DialogContent class="dialog-content">
-				<DialogTitle>Sign out of this session?</DialogTitle>
-				<DialogDescription>You can sign in again later.</DialogDescription>
-				<footer>
-					<DialogClose>Stay signed in</DialogClose>
-					<button type="button" @click="emit('confirm')">Sign out</button>
-				</footer>
-			</DialogContent>
-		</DialogPortal>
-	</DialogRoot>
+  <DialogRoot v-model:open="confirmOpen">
+    <DialogTrigger>Sign out</DialogTrigger>
+    <DialogPortal>
+      <DialogOverlay class="dialog-overlay" />
+      <DialogContent class="dialog-content">
+        <DialogTitle>Sign out of this session?</DialogTitle>
+        <DialogDescription>You can sign in again later.</DialogDescription>
+        <footer>
+          <DialogClose>Stay signed in</DialogClose>
+          <button type="button" @click="emit('confirm')">Sign out</button>
+        </footer>
+      </DialogContent>
+    </DialogPortal>
+  </DialogRoot>
 
-	<DialogRoot v-model:open="editOpen">
-		<DialogTrigger>Edit profile</DialogTrigger>
-		<DialogPortal>
-			<DialogOverlay class="dialog-overlay" />
-			<DialogContent class="dialog-content">
-				<DialogTitle>Edit profile</DialogTitle>
-				<DialogDescription>Update your public profile.</DialogDescription>
-				<form @submit.prevent="emit('save', { ...profile })">
-					<label>Name <input v-model="profile.name" required /></label>
-					<label>Bio <textarea v-model="profile.bio" /></label>
-					<footer>
-						<DialogClose type="button">Cancel</DialogClose>
-						<button type="submit">Save changes</button>
-					</footer>
-				</form>
-			</DialogContent>
-		</DialogPortal>
-	</DialogRoot>
+  <DialogRoot v-model:open="editOpen">
+    <DialogTrigger>Edit profile</DialogTrigger>
+    <DialogPortal>
+      <DialogOverlay class="dialog-overlay" />
+      <DialogContent class="dialog-content">
+        <DialogTitle>Edit profile</DialogTitle>
+        <DialogDescription>Update your public profile.</DialogDescription>
+        <form @submit.prevent="emit('save', { ...profile })">
+          <label>Name <input v-model="profile.name" required /></label>
+          <label>Bio <textarea v-model="profile.bio" /></label>
+          <footer>
+            <DialogClose type="button">Cancel</DialogClose>
+            <button type="submit">Save changes</button>
+          </footer>
+        </form>
+      </DialogContent>
+    </DialogPortal>
+  </DialogRoot>
 </template>
 
 <style scoped>
 .dialog-overlay {
-	position: fixed;
-	inset: 0;
-	background: rgb(0 0 0 / 50%);
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 50%);
 }
 .dialog-content {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: min(28rem, calc(100vw - 2rem));
-	max-height: calc(100dvh - 2rem);
-	overflow: auto;
-	box-sizing: border-box;
-	padding: 1.5rem;
-	background: Canvas;
-	color: CanvasText;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(28rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  background: Canvas;
+  color: CanvasText;
 }
 </style>
 ```
@@ -126,28 +132,28 @@ not replace dialog focus handling, modality, keyboard behavior, or scroll handli
 import { inject, provide, readonly, ref, type InjectionKey, type Ref } from 'vue';
 
 type DisclosureContext = {
-	open: Readonly<Ref<boolean>>;
-	setOpen: (value: boolean) => void;
+  open: Readonly<Ref<boolean>>;
+  setOpen: (value: boolean) => void;
 };
 
 const disclosureKey: InjectionKey<DisclosureContext> = Symbol('disclosure');
 
 export function provideDisclosure(initialOpen = false): DisclosureContext {
-	const open = ref(initialOpen);
-	const context: DisclosureContext = {
-		open: readonly(open),
-		setOpen(value) {
-			open.value = value;
-		},
-	};
-	provide(disclosureKey, context);
-	return context;
+  const open = ref(initialOpen);
+  const context: DisclosureContext = {
+    open: readonly(open),
+    setOpen(value) {
+      open.value = value;
+    },
+  };
+  provide(disclosureKey, context);
+  return context;
 }
 
 export function useDisclosure(): DisclosureContext {
-	const context = inject(disclosureKey, undefined);
-	if (!context) throw new Error('Disclosure parts require a DisclosureRoot');
-	return context;
+  const context = inject(disclosureKey, undefined);
+  if (!context) throw new Error('Disclosure parts require a DisclosureRoot');
+  return context;
 }
 ```
 
@@ -197,8 +203,14 @@ and leaves completion to its caller through the required open model.
 <!-- ConfirmDialog.vue -->
 <script setup lang="ts">
 import {
-	DialogClose, DialogContent, DialogDescription, DialogOverlay,
-	DialogPortal, DialogRoot, DialogTitle, DialogTrigger,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
 } from 'reka-ui';
 
 defineProps<{ title: string; description: string; confirmLabel: string }>();
@@ -207,20 +219,20 @@ const emit = defineEmits<{ confirm: [] }>();
 </script>
 
 <template>
-	<DialogRoot v-model:open="open">
-		<DialogTrigger as-child><slot name="trigger" /></DialogTrigger>
-		<DialogPortal>
-			<DialogOverlay class="dialog-overlay" />
-			<DialogContent class="dialog-content">
-				<DialogTitle>{{ title }}</DialogTitle>
-				<DialogDescription>{{ description }}</DialogDescription>
-				<footer>
-					<DialogClose>Cancel</DialogClose>
-					<button type="button" @click="emit('confirm')">{{ confirmLabel }}</button>
-				</footer>
-			</DialogContent>
-		</DialogPortal>
-	</DialogRoot>
+  <DialogRoot v-model:open="open">
+    <DialogTrigger as-child><slot name="trigger" /></DialogTrigger>
+    <DialogPortal>
+      <DialogOverlay class="dialog-overlay" />
+      <DialogContent class="dialog-content">
+        <DialogTitle>{{ title }}</DialogTitle>
+        <DialogDescription>{{ description }}</DialogDescription>
+        <footer>
+          <DialogClose>Cancel</DialogClose>
+          <button type="button" @click="emit('confirm')">{{ confirmLabel }}</button>
+        </footer>
+      </DialogContent>
+    </DialogPortal>
+  </DialogRoot>
 </template>
 ```
 

@@ -15,12 +15,30 @@ export interface PluginManifest {
 }
 
 export async function readPluginManifest(): Promise<PluginManifest> {
-  const schema = JSON.parse(await readFile(fileURLToPath(new URL('../packaging/schemas/agent-plugins-1.0.0.json', import.meta.url)), 'utf8'));
+  const schema = JSON.parse(
+    await readFile(
+      fileURLToPath(new URL('../packaging/schemas/agent-plugins-1.0.0.json', import.meta.url)),
+      'utf8',
+    ),
+  );
   const validate = new Ajv2020({ allErrors: true }).compile<PluginManifest>({
     ...schema,
-    required: ['$schema', 'name', 'version', 'description', 'author', 'homepage', 'repository', 'license', 'keywords'],
+    required: [
+      '$schema',
+      'name',
+      'version',
+      'description',
+      'author',
+      'homepage',
+      'repository',
+      'license',
+      'keywords',
+    ],
   });
-  const manifest: unknown = JSON.parse(await readFile(fileURLToPath(new URL('../packaging/plugin.json', import.meta.url)), 'utf8'));
-  if (!validate(manifest)) throw new Error(`Invalid plugin manifest: ${JSON.stringify(validate.errors)}`);
+  const manifest: unknown = JSON.parse(
+    await readFile(fileURLToPath(new URL('../packaging/plugin.json', import.meta.url)), 'utf8'),
+  );
+  if (!validate(manifest))
+    throw new Error(`Invalid plugin manifest: ${JSON.stringify(validate.errors)}`);
   return manifest;
 }

@@ -6,16 +6,16 @@ manager and test conventions; these are defaults for new frontend projects.
 
 ## Choose the proof before the tool
 
-| Failure to catch | Scope and environment | Dependency strategy |
-| --- | --- | --- |
-| Wrong rule, transformation, or state transition | Vitest unit, Node | Concrete inputs and real functions |
-| Wrong orchestration of domain capabilities | Vitest unit, Node | DI with deterministic implementations |
-| Broken serialization, response parsing, or HTTP error mapping | Vitest integration, Node | Real HTTP adapter with MSW |
-| Broken component rendering, interaction, focus, or lifecycle | Vitest Browser Mode | Real components and state; MSW for HTTP |
-| Broken IndexedDB adapter behavior | Vitest Browser Mode | Real browser storage, isolated per test |
-| Broken routing, app wiring, or restore after reload | Playwright E2E | Running application; declare external replacements |
-| Broken SSR hydration | Playwright E2E in an SSR app | Direct navigation and post-hydration interaction |
-| Wrong appearance or viewport fit | Focused browser visual checks | Stable data, viewport, fonts, and screenshot baseline |
+| Failure to catch                                              | Scope and environment         | Dependency strategy                                   |
+| ------------------------------------------------------------- | ----------------------------- | ----------------------------------------------------- |
+| Wrong rule, transformation, or state transition               | Vitest unit, Node             | Concrete inputs and real functions                    |
+| Wrong orchestration of domain capabilities                    | Vitest unit, Node             | DI with deterministic implementations                 |
+| Broken serialization, response parsing, or HTTP error mapping | Vitest integration, Node      | Real HTTP adapter with MSW                            |
+| Broken component rendering, interaction, focus, or lifecycle  | Vitest Browser Mode           | Real components and state; MSW for HTTP               |
+| Broken IndexedDB adapter behavior                             | Vitest Browser Mode           | Real browser storage, isolated per test               |
+| Broken routing, app wiring, or restore after reload           | Playwright E2E                | Running application; declare external replacements    |
+| Broken SSR hydration                                          | Playwright E2E in an SSR app  | Direct navigation and post-hydration interaction      |
+| Wrong appearance or viewport fit                              | Focused browser visual checks | Stable data, viewport, fonts, and screenshot baseline |
 
 Node is an environment, not a synonym for unit testing. Browser Mode provides a
 real browser, not automatically the whole application. A component interaction

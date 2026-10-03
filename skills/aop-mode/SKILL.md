@@ -16,6 +16,7 @@ directory. The runtime contract identifies dependencies that are not portable.
 Do not substitute a shorter workflow for the original.
 
 During this explicit invocation, also apply the relevant personal principles:
+
 - For frontend test setup, feature verification, or coverage review, read
   `../principle-test-at-the-right-layer/SKILL.md`.
 - When designing dependencies or replacing dependencies in tests, read

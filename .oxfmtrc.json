@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "semi": true,
+  "trailingComma": "all",
+  "proseWrap": "preserve",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "vendor/**",
+    "upstream.lock.json",
+    "packaging/schemas/*.json",
+    "pnpm-lock.yaml",
+    "docs/src/content/docs/evidence/**",
+    "node_modules/**",
+    "dist/**",
+    "docs/dist/**",
+    "**/.astro/**",
+    ".eval-artifacts/**",
+    "test-results/**",
+    "playwright-report/**"
+  ]
+}

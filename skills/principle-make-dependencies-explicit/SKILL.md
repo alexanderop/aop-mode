@@ -1,6 +1,6 @@
 ---
 name: principle-make-dependencies-explicit
-description: "Apply when designing code with time, randomness, persistence, network, or service dependencies, or when tests need to replace them. Make dependencies explicit without unnecessary abstraction."
+description: 'Apply when designing code with time, randomness, persistence, network, or service dependencies, or when tests need to replace them. Make dependencies explicit without unnecessary abstraction.'
 disable-model-invocation: true
 ---
 

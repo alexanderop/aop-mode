@@ -51,11 +51,11 @@ An interrupted or unstarted client does not count as passing.
 
 The local run on 2026-10-03 tested:
 
-| CLI | Version | Install, update, removal | Skill discovery |
-| --- | --- | --- | --- |
-| Claude Code | 2.1.288 | Passed | 56 skills in native component inventory |
-| Codex | 0.160.0 | Passed | 56 enabled, namespaced plugin skills via app-server |
-| Copilot CLI | 1.0.77 | Passed | Installer reported 56 skills |
+| CLI         | Version | Install, update, removal | Skill discovery                                     |
+| ----------- | ------- | ------------------------ | --------------------------------------------------- |
+| Claude Code | 2.1.288 | Passed                   | 56 skills in native component inventory             |
+| Codex       | 0.160.0 | Passed                   | 56 enabled, namespaced plugin skills via app-server |
+| Copilot CLI | 1.0.77  | Passed                   | Installer reported 56 skills                        |
 
 The version comes from each isolated CLI process. A CLI launcher can resolve a
 different installed version under CI configuration than in an interactive shell.

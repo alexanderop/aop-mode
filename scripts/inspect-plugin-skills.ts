@@ -12,8 +12,14 @@ const child = spawn('codex', ['app-server', '--stdio'], { stdio: ['pipe', 'pipe'
 const lines = createInterface({ input: child.stdout });
 child.stderr.pipe(process.stderr);
 let received = false;
-child.on('error', (error) => { console.error(error.message); process.exitCode = 1; });
-child.on('close', () => { if (!received) process.exitCode = 1; lines.close(); });
+child.on('error', (error) => {
+  console.error(error.message);
+  process.exitCode = 1;
+});
+child.on('close', () => {
+  if (!received) process.exitCode = 1;
+  lines.close();
+});
 child.stdin.on('error', () => {});
 const send = (message: unknown) => child.stdin.write(`${JSON.stringify(message)}\n`);
 lines.on('line', (line) => {
@@ -35,4 +41,11 @@ lines.on('line', (line) => {
     child.kill('SIGTERM');
   }
 });
-send({ id: 1, method: 'initialize', params: { clientInfo: { name: 'aop-plugin-install-eval', version: '0.1.0' }, capabilities: { experimentalApi: true } } });
+send({
+  id: 1,
+  method: 'initialize',
+  params: {
+    clientInfo: { name: 'aop-plugin-install-eval', version: '0.1.0' },
+    capabilities: { experimentalApi: true },
+  },
+});

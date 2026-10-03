@@ -32,41 +32,70 @@ it('ships an extractable release with complete skills, attribution, working mark
     const manifest = await readPluginManifest();
     const filename = `aop-mode-${manifest.version}.tar.gz`;
     expect(await readFile(`${archive}.sha256`, 'utf8')).toBe(
-      `${createHash('sha256').update(await readFile(archive)).digest('hex')}  ${filename}\n`,
+      `${createHash('sha256')
+        .update(await readFile(archive))
+        .digest('hex')}  ${filename}\n`,
     );
     const extracted = join(directory, 'extracted');
     await mkdir(extracted);
     await execute('tar', ['-xzf', archive, '-C', extracted]);
     const root = join(extracted, `aop-mode-${manifest.version}`);
-    expect((await readdir(root)).sort()).toEqual(['.agents', '.claude-plugin', '.plugin', 'INSTALL.md', 'LICENSE', 'NOTICE.md', 'plugins']);
+    expect((await readdir(root)).sort()).toEqual([
+      '.agents',
+      '.claude-plugin',
+      '.plugin',
+      'INSTALL.md',
+      'LICENSE',
+      'NOTICE.md',
+      'plugins',
+    ]);
     const lock = await checkImport();
     for (const harness of harnesses) {
       const plugin = join(root, 'plugins', harness);
       expect(JSON.parse(await readFile(join(plugin, 'plugin.json'), 'utf8'))).toEqual(manifest);
       expect(await readFile(join(plugin, 'NOTICE.md'), 'utf8')).toContain('Lauren Tan');
-      expect(await readFile(join(plugin, 'LICENSE'), 'utf8')).toBe(await readFile('LICENSE', 'utf8'));
+      expect(await readFile(join(plugin, 'LICENSE'), 'utf8')).toBe(
+        await readFile('LICENSE', 'utf8'),
+      );
       expect(await readFile(join(plugin, 'skills/aop-mode/runtime.md'), 'utf8')).toContain(
         await readFile(`runtime/${harness}.md`, 'utf8'),
       );
       for (const file of lock.files) {
         const path = join(plugin, 'skills/aop-mode/.upstream', file.path);
-        expect(createHash('sha256').update(await readFile(path)).digest('hex'), file.path).toBe(file.sha256);
+        expect(
+          createHash('sha256')
+            .update(await readFile(path))
+            .digest('hex'),
+          file.path,
+        ).toBe(file.sha256);
         expect(Boolean((await stat(path)).mode & 0o111), file.path).toBe(file.mode === '100755');
       }
       for (const name of await readdir(join(plugin, 'skills'))) {
-        expect(await readFile(join(plugin, 'skills', name, 'SKILL.md'), 'utf8')).toContain('disable-model-invocation: true');
-        expect(await readFile(join(plugin, 'skills', name, 'agents/openai.yaml'), 'utf8')).toContain('allow_implicit_invocation: false');
+        expect(await readFile(join(plugin, 'skills', name, 'SKILL.md'), 'utf8')).toContain(
+          'disable-model-invocation: true',
+        );
+        expect(
+          await readFile(join(plugin, 'skills', name, 'agents/openai.yaml'), 'utf8'),
+        ).toContain('allow_implicit_invocation: false');
       }
     }
-    const claudeManifest = JSON.parse(await readFile(join(root, 'plugins/claude/.claude-plugin/plugin.json'), 'utf8'));
+    const claudeManifest = JSON.parse(
+      await readFile(join(root, 'plugins/claude/.claude-plugin/plugin.json'), 'utf8'),
+    );
     const { $schema: _schema, ...metadata } = manifest;
     expect(claudeManifest).toEqual({ ...metadata, skills: './skills/' });
-    const codex = JSON.parse(await readFile(join(root, '.agents/plugins/marketplace.json'), 'utf8'));
-    const claude = JSON.parse(await readFile(join(root, '.claude-plugin/marketplace.json'), 'utf8'));
+    const codex = JSON.parse(
+      await readFile(join(root, '.agents/plugins/marketplace.json'), 'utf8'),
+    );
+    const claude = JSON.parse(
+      await readFile(join(root, '.claude-plugin/marketplace.json'), 'utf8'),
+    );
     expect(codex.plugins[0].source.path).toBe('./plugins/codex');
     expect(claude.plugins[0].source).toBe('./plugins/claude');
     for (const path of [codex.plugins[0].source.path, claude.plugins[0].source]) {
-      expect(JSON.parse(await readFile(join(root, path, 'plugin.json'), 'utf8')).name).toBe('aop-mode');
+      expect(JSON.parse(await readFile(join(root, path, 'plugin.json'), 'utf8')).name).toBe(
+        'aop-mode',
+      );
     }
     const instructions = await readFile(join(root, 'INSTALL.md'), 'utf8');
     expect(instructions).not.toContain('{{version}}');

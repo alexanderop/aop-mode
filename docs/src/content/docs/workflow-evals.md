@@ -50,12 +50,12 @@ and the explicit condition. A timeout limits time, not spend.
 
 ## Scenario contracts
 
-| Scenario | Natural task | Required workflow evidence | Independent outcome |
-| --- | --- | --- | --- |
-| Investigation | Explain intermittent webhook timeouts without editing | Entry, runtime, router, Investigation playbook, `how`, `unslop`; parallel explorers, returned results, then an explainer | Shared deadline diagnosis grounded in fixture evidence; repository unchanged |
-| Prototype | Compare fixed and sliding window limiting | Entry, runtime, router, Prototype playbook, design-space principle; actual comparison command | Executable policies checked on multiple limits, windows, tenant combinations and boundaries |
-| Architecture | Architect a limiter and stop for review | Entry, runtime, router, `architect`, `how`, `arena`, design references; independent candidates followed by a judge | Exported interface and caller sketch typecheck; rationale compares policies; production unchanged |
-| Ordinary | Create an exact text file | No observed activation or native delegation | Exact file and response; no unrelated edits |
+| Scenario      | Natural task                                          | Required workflow evidence                                                                                               | Independent outcome                                                                               |
+| ------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Investigation | Explain intermittent webhook timeouts without editing | Entry, runtime, router, Investigation playbook, `how`, `unslop`; parallel explorers, returned results, then an explainer | Shared deadline diagnosis grounded in fixture evidence; repository unchanged                      |
+| Prototype     | Compare fixed and sliding window limiting             | Entry, runtime, router, Prototype playbook, design-space principle; actual comparison command                            | Executable policies checked on multiple limits, windows, tenant combinations and boundaries       |
+| Architecture  | Architect a limiter and stop for review               | Entry, runtime, router, `architect`, `how`, `arena`, design references; independent candidates followed by a judge       | Exported interface and caller sketch typecheck; rationale compares policies; production unchanged |
+| Ordinary      | Create an exact text file                             | No observed activation or native delegation                                                                              | Exact file and response; no unrelated edits                                                       |
 
 Architecture routes through a skill, not a fictional architecture playbook.
 Prototyping does not unconditionally require subagents. Investigation does here

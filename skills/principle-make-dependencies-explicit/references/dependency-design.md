@@ -14,43 +14,46 @@ in-memory implementation exercises the same public contract without `vi.mock`,
 `vi.fn`, a global clock replacement, or implementation-call assertions.
 
 ```ts
-type SavedPackage = Readonly<{ name: string; savedAt: number }>
+type SavedPackage = Readonly<{ name: string; savedAt: number }>;
 type Collection = Readonly<{
-  put: (entry: SavedPackage) => Promise<void>
-  list: () => Promise<readonly SavedPackage[]>
-}>
+  put: (entry: SavedPackage) => Promise<void>;
+  list: () => Promise<readonly SavedPackage[]>;
+}>;
 type Dependencies = Readonly<{
-  collection: Collection
-  now: () => number
-}>
+  collection: Collection;
+  now: () => number;
+}>;
 
-const createSavePackage = ({ collection, now }: Dependencies) =>
+const createSavePackage =
+  ({ collection, now }: Dependencies) =>
   async (name: string): Promise<void> => {
-    await collection.put({ name, savedAt: now() })
-  }
+    await collection.put({ name, savedAt: now() });
+  };
 
 function createMemoryCollection(): Collection {
-  const entries = new Map<string, SavedPackage>()
+  const entries = new Map<string, SavedPackage>();
   return {
-    put: async (entry) => { entries.set(entry.name, { ...entry }) },
+    put: async (entry) => {
+      entries.set(entry.name, { ...entry });
+    },
     list: async () => [...entries.values()].map((entry) => ({ ...entry })),
-  }
+  };
 }
 ```
 
 A Vitest unit test can exercise this operation:
 
 ```ts
-import { expect, test } from 'vitest'
+import { expect, test } from 'vitest';
 
 test('saving a package records its name and the supplied time', async () => {
-  const collection = createMemoryCollection()
-  const savePackage = createSavePackage({ collection, now: () => 100 })
+  const collection = createMemoryCollection();
+  const savePackage = createSavePackage({ collection, now: () => 100 });
 
-  await savePackage('vitest')
+  await savePackage('vitest');
 
-  expect(await collection.list()).toEqual([{ name: 'vitest', savedAt: 100 }])
-})
+  expect(await collection.list()).toEqual([{ name: 'vitest', savedAt: 100 }]);
+});
 ```
 
 The example's contained mutation implements storage; it does not expose mutable
