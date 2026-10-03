@@ -15,6 +15,7 @@ for (const harness of harnesses) {
       await writeDistribution(harness, destination);
       const root = join(destination, 'skills');
       const personal = [
+        'asd',
         'principle-compose-ui-variants',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
