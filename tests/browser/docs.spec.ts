@@ -20,7 +20,7 @@ test('visitor can install, inspect evidence, and find upstream credit', async ({
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Latest local evidence');
   await page.goto('/aop-mode/catalog/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Complete skill catalog');
-  await expect(page.getByRole('table').getByRole('row')).toHaveCount(59);
+  await expect(page.getByRole('table').getByRole('row')).toHaveCount(60);
   await page.getByRole('link', { name: 'runtime compatibility', exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Runtime compatibility');
   await page.goto('/aop-mode/');

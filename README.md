@@ -42,7 +42,7 @@ pnpm skills:install codex /absolute/path/to/your-project
 pnpm dev
 ```
 
-Use `claude` or `copilot` for the other targets. Installation copies all 58
+Use `claude` or `copilot` for the other targets. Installation copies all 60
 entrypoints and the complete upstream tree into project-local skill directories.
 Existing skill-name collisions abort before writing anything. No global settings
 are changed. Invoke `$aop-mode` in Codex or `/aop-mode` in Claude Code/Copilot CLI.

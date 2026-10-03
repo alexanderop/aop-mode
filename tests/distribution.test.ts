@@ -18,6 +18,7 @@ for (const harness of harnesses) {
         'asd',
         'principle-compose-ui-variants',
         'principle-functional-core',
+        'principle-isolate-features',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
         'visual',
