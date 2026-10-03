@@ -25,7 +25,7 @@ pnpm install --frozen-lockfile
 pnpm plugins:pack
 ```
 
-Extract `dist/releases/aop-mode-0.1.0.tar.gz` and follow its `INSTALL.md`.
+Extract `dist/releases/aop-mode-0.2.0.tar.gz` and follow its `INSTALL.md`.
 Every client package has a standard Agent Plugins manifest; the Claude package
 also carries its compatibility manifest. The archive includes local marketplace
 catalogs, attribution, and a SHA-256 checksum alongside it.

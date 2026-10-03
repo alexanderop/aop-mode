@@ -1,14 +1,14 @@
 ---
 title: Personal principles
-description: Frontend testing, explicit dependencies, and UI composition in aop-mode.
+description: Frontend testing, explicit dependencies, functional core design, and UI composition in aop-mode.
 ---
 
-These three principles are aop-mode additions. The original pstack source remains
+These four principles are aop-mode additions. The original pstack source remains
 unchanged. Each principle has a short skill entrypoint and a supporting reference,
 packaged for Claude Code, Codex, and Copilot.
 
 An explicit `aop-mode` invocation loads them when the task concerns frontend testing,
-dependency design, or UI composition. They can also be requested individually by their full skill
+dependency design, functional core design, or UI composition. They can also be requested individually by their full skill
 name. They do not install startup hooks or activate outside the requested task.
 
 ## Test at the Right Layer
@@ -39,6 +39,17 @@ The [dependency design reference](https://github.com/alexanderop/aop-mode/blob/m
 includes a TypeScript operation and a behavioral unit test. It explains how this
 fits existing Vue state and Effect service conventions without requiring a migration.
 
+## Functional Core
+
+`principle-functional-core` models decisions as data and composes pure functions.
+Return typed outcomes for expected rejections, use tagged unions for meaningful
+states, and keep storage, network, and UI effects in an outer workflow.
+
+Its [TypeScript reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-functional-core/references/functional-core.md)
+shows a publication decision, exhaustive handling, explicit persistence, and
+behavioral tests. These Effect-inspired patterns use ordinary TypeScript and need
+no Effect dependency. Existing Effect projects retain their own conventions.
+
 ## Compose UI Variants
 
 `principle-compose-ui-variants` puts layout decisions in the consumer's component
@@ -52,7 +63,7 @@ The provider example teaches state coordination, not production dialog accessibi
 
 ## Verification status
 
-Packaging checks cover all three principles, their references, explicit invocation
+Packaging checks cover all four principles, their references, explicit invocation
 policy, and the unchanged upstream files for each harness. This is distribution
 coverage, not evidence that a live agent follows these principles correctly.
 See [the evaluation guide](/aop-mode/testing/) for how behavioral evidence is gathered.

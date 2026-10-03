@@ -17,6 +17,7 @@ for (const harness of harnesses) {
       const personal = [
         'asd',
         'principle-compose-ui-variants',
+        'principle-functional-core',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
         'visual',

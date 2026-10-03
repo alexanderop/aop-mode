@@ -10,7 +10,7 @@ requires no Node.js, pnpm, or source build.
 ## Get the package
 
 The repository's verification workflow produces an **aop-mode-plugins** artifact
-containing `aop-mode-0.1.0.tar.gz` and its SHA-256 checksum. Download the artifact
+containing `aop-mode-0.2.0.tar.gz` and its SHA-256 checksum. Download the artifact
 from a successful run in [GitHub Actions](https://github.com/alexanderop/aop-mode/actions).
 This is a CI download, not a listing in a public plugin directory.
 
@@ -25,7 +25,7 @@ The archive and checksum appear in `dist/releases/`. Extract the archive to a
 stable location:
 
 ```sh
-tar -xzf aop-mode-0.1.0.tar.gz
+tar -xzf aop-mode-0.2.0.tar.gz
 ```
 
 The extracted folder includes `INSTALL.md`, attribution, three plugin packages,
@@ -35,7 +35,7 @@ example absolute path with the extracted folder's actual path.
 ## Claude Code
 
 ```sh
-claude plugin marketplace add /absolute/path/to/aop-mode-0.1.0
+claude plugin marketplace add /absolute/path/to/aop-mode-0.2.0
 claude plugin install aop-mode@aop-mode-local
 claude plugin details aop-mode
 ```
@@ -44,7 +44,7 @@ For a single session without a persistent installation, start Claude Code in you
 project with:
 
 ```sh
-claude --plugin-dir /absolute/path/to/aop-mode-0.1.0/plugins/claude
+claude --plugin-dir /absolute/path/to/aop-mode-0.2.0/plugins/claude
 ```
 
 Plugin skills are namespaced. In a fresh session, use
@@ -53,7 +53,7 @@ Plugin skills are namespaced. In a fresh session, use
 ## Codex
 
 ```sh
-codex plugin marketplace add /absolute/path/to/aop-mode-0.1.0
+codex plugin marketplace add /absolute/path/to/aop-mode-0.2.0
 codex plugin add aop-mode@aop-mode-local
 codex plugin list --marketplace aop-mode-local
 ```
@@ -65,7 +65,7 @@ client's skill picker. Project-local skill copies use different names.
 ## Copilot CLI
 
 ```sh
-copilot plugin marketplace add /absolute/path/to/aop-mode-0.1.0
+copilot plugin marketplace add /absolute/path/to/aop-mode-0.2.0
 copilot plugin install aop-mode@aop-mode-local
 copilot plugin list
 ```

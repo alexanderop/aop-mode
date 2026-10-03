@@ -21,6 +21,8 @@ During this explicit invocation, also apply the relevant personal principles:
   `../principle-test-at-the-right-layer/SKILL.md`.
 - When designing dependencies or replacing dependencies in tests, read
   `../principle-make-dependencies-explicit/SKILL.md`.
+- When business decisions mix with I/O or need explicit outcomes and states, read
+  `../principle-functional-core/SKILL.md`.
 - When UI variants duplicate behavior or props select different component trees, read
   `../principle-compose-ui-variants/SKILL.md`.
 
