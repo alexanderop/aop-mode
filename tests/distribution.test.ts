@@ -19,6 +19,7 @@ for (const harness of harnesses) {
         'principle-compose-ui-variants',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
+        'visual',
       ];
       expect((await readdir(root)).sort()).toEqual(
         ['aop-mode', ...personal, ...lock.skills.map((skill) => skill.name)].sort(),
