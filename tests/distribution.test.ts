@@ -14,7 +14,7 @@ for (const harness of harnesses) {
       const lock = await checkImport();
       await writeDistribution(harness, destination);
       const root = join(destination, 'skills');
-      const personal = ['principle-make-dependencies-explicit', 'principle-test-at-the-right-layer'];
+      const personal = ['principle-compose-ui-variants', 'principle-make-dependencies-explicit', 'principle-test-at-the-right-layer'];
       expect((await readdir(root)).sort()).toEqual(['aop-mode', ...personal, ...lock.skills.map((skill) => skill.name)].sort());
       for (const name of personal) {
         const source = join('skills', name);

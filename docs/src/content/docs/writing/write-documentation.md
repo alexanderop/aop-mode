@@ -59,6 +59,34 @@ Add the page's slug to the sidebar in `docs/astro.config.mjs`. Link to it from t
 existing page where readers would need it. Follow the existing content structure
 when updating a page instead of creating one.
 
+## Explain a mechanism with a diagram
+
+Use a short introduction, one concrete example, and an explanation of its result.
+Move packaging details and less common cases into reference pages. Give readers
+a next step that follows naturally from the page they just read.
+
+For a diagram, use an `.mdx` page and import the shared component. The import
+below is relative to a page directly inside `docs/src/content/docs/`; a nested
+page needs another `../`.
+
+```mdx
+import Diagram from '../../components/Diagram.astro';
+
+<Diagram
+  title="Independent verification"
+  caption="The runner checks the files and behavior left by the agent."
+  source={`flowchart TD
+    A[Agent finishes] --> B[Runner grades outcome]
+    B --> C[Record evidence]`}
+/>
+```
+
+Give each diagram one teaching job and roughly four to seven nodes. Use short
+labels and top-to-bottom flows that remain readable on a phone. Put the takeaway
+in the caption and explain the same mechanism in the surrounding prose. The
+component provides a text disclosure and follows the site's light or dark theme.
+Check the rendered diagram in both themes; avoid relying on color alone.
+
 ## Verify the documentation change
 
 Run the build from the repository root:

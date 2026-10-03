@@ -1,14 +1,14 @@
 ---
 title: Personal principles
-description: Frontend testing and explicit dependencies in aop-mode.
+description: Frontend testing, explicit dependencies, and UI composition in aop-mode.
 ---
 
-These two principles are aop-mode additions. The original pstack source remains
+These three principles are aop-mode additions. The original pstack source remains
 unchanged. Each principle has a short skill entrypoint and a supporting reference,
 packaged for Claude Code, Codex, and Copilot.
 
-An explicit `aop-mode` invocation loads them when the task concerns frontend testing
-or dependency design. They can also be requested individually by their full skill
+An explicit `aop-mode` invocation loads them when the task concerns frontend testing,
+dependency design, or UI composition. They can also be requested individually by their full skill
 name. They do not install startup hooks or activate outside the requested task.
 
 ## Test at the Right Layer
@@ -39,9 +39,20 @@ The [dependency design reference](https://github.com/alexanderop/aop-mode/blob/m
 includes a TypeScript operation and a behavioral unit test. It explains how this
 fits existing Vue state and Effect service conventions without requiring a migration.
 
+## Compose UI Variants
+
+`principle-compose-ui-variants` puts layout decisions in the consumer's component
+tree. Keep useful appearance and behavior props. When flags select different trees,
+use slots or cooperating components that share interaction behavior.
+
+Its [component composition reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-compose-ui-variants/references/component-composition.md)
+shows confirm and edit dialogs, a typed local provider, and a convenience wrapper.
+It covers styling and element composition while keeping simple components simple.
+The provider example teaches state coordination, not production dialog accessibility.
+
 ## Verification status
 
-Packaging checks cover both principles, their references, explicit invocation
+Packaging checks cover all three principles, their references, explicit invocation
 policy, and the unchanged upstream files for each harness. This is distribution
-coverage, not evidence that a live agent follows either principle correctly.
+coverage, not evidence that a live agent follows these principles correctly.
 See [the evaluation guide](/aop-mode/testing/) for how behavioral evidence is gathered.

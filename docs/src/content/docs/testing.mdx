@@ -3,6 +3,20 @@ title: End-to-end testing
 description: Test real harness behavior using isolated workspaces and independent acceptance checks.
 ---
 
+import Diagram from '../../components/Diagram.astro';
+
+<Diagram
+  title="Execution and independent verification"
+  caption="Grader code and retained evidence live outside the candidate workspace. The runner checks the outcome after the CLI completes."
+  source={`flowchart TD
+ A[Prepare candidate workspace] --> B[Run coding agent]
+ B --> C[Check terminal result]
+ C --> D[Grade files and behavior]
+ E[External grader] --> D
+ D --> F[Retain result and evidence]`}
+/>
+
+
 ## Three different kinds of evidence
 
 | Layer | What it proves | Command |
@@ -10,6 +24,10 @@ description: Test real harness behavior using isolated workspaces and independen
 | Offline runner tests | Graders reject bad outputs; process deadlines and cleanup work; existing skills are preserved | `pnpm test` |
 | Live harness tasks | A real authenticated CLI reads the installed skill and produces the required outcome | `pnpm test:harnesses` |
 | Documentation journeys | Navigation, attribution, and mobile layout work in a browser | `pnpm test:docs` |
+
+For skill loading, playbook routing, and native delegation, use the separate
+[workflow evaluations](/aop-mode/workflow-evals/) for Codex and Copilot. The task
+suite below retains its original outcome-focused contracts.
 
 ## Run a task
 

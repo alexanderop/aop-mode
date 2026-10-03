@@ -1,7 +1,25 @@
 ---
-title: The workflow
+title: How aop-mode works
 description: Full upstream playbooks with explicit activation and transparent runtime adaptations.
 ---
+
+aop-mode is a set of instructions loaded by your coding agent when you explicitly
+invoke a workflow. The runtime contract adapts those instructions to the tools
+available in that agent.
+
+
+import Diagram from '../../components/Diagram.astro';
+
+<Diagram
+  title="Explicit activation"
+  caption="Invoking the entrypoint loads the runtime contract and original router. Individual skills can also be invoked directly."
+  source={`flowchart TD
+ A[Explicit aop-mode invocation] --> B[Runtime contract]
+ B --> C[Original router and principles]
+ C --> D[Task playbook]
+ E[Explicit individual skill invocation] --> F[Selected skill]`}
+/>
+
 
 Invoke `aop-mode` to load the original **poteto-mode** router, its principle index,
 and its full task playbooks. Invoke an individual skill such as `tdd`, `how`,

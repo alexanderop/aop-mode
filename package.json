@@ -17,7 +17,9 @@
     "test:docs": "playwright test",
     "report": "tsx scripts/report.ts",
     "skills:build": "tsx scripts/build-skills.ts",
-    "upstream:check": "tsx scripts/import-pstack.ts --check"
+    "upstream:check": "tsx scripts/import-pstack.ts --check",
+    "eval:workflows": "tsx scripts/evaluate-workflows.ts",
+    "eval:regrade": "tsx scripts/regrade-workflow.ts"
   },
   "engines": {
     "node": ">=22.14"
@@ -31,6 +33,7 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.4",
     "astro": "^7.3.5",
+    "mermaid": "^12.1.0",
     "oxlint": "^1.86.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",

@@ -1,53 +1,63 @@
 ---
-title: A deliberate workflow. On your terms.
-description: Explicit coding workflows for Claude Code, Codex, and Copilot CLI, backed by task-level evidence.
-template: splash
-hero:
-  title: A deliberate workflow. On your terms.
-  tagline: Bring the same intent to Claude Code, Codex, and Copilot CLI. Invoke it when you need it. Check what each agent actually delivers.
-  actions:
-    - text: Start with aop-mode
-      link: /aop-mode/getting-started/
-      icon: right-arrow
-    - text: Inspect the evidence
-      link: /aop-mode/evidence/latest/
-      variant: minimal
+title: Coding workflows you invoke explicitly
+description: Use aop-mode to investigate bugs, review changes, and implement features with verification steps.
+
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Diagram from '../../components/Diagram.astro';
 
-<CardGrid>
-  <Card title="You choose when" icon="approve-check">
-    Explicit invocation. No startup hooks, global mandates, or automatic workflow takeover.
-  </Card>
-  <Card title="The complete pstack skill set" icon="puzzle">
-    All 49 main skills, three automation skills, and 23 original playbooks, with explicit runtime adaptations.
-  </Card>
-  <Card title="Outcomes over claims" icon="document">
-    Each harness runs in a fresh task workspace. Independent checks grade the files and behavior it leaves behind.
-  </Card>
-  <Card title="Evidence you can inspect" icon="magnifier">
-    Record the CLI version, skill revision, task, transcript, and verdict. Failed and blocked runs stay visible.
-  </Card>
-</CardGrid>
+aop-mode adds explicitly invoked coding workflows to Claude Code, Codex, and
+Copilot CLI. Use it to investigate a bug, review a change, or implement a feature
+with verification steps.
 
-## Same task. Three real agents.
+The original workflow ideas, skills, and playbooks come from
+[pstack](https://github.com/cursor/plugins/tree/main/pstack), created by
+[Lauren Tan (poteto)](https://github.com/poteto). aop-mode packages and adapts that
+work for other coding agents. [Credits and source](/aop-mode/credits/).
 
-The initial suite checks a pagination repair, a read-only access-control review,
-and an ordinary file edit that must leave aop-mode inactive. Run one case while
-developing, or run the full matrix before a release.
+Install the skills in a project, then name the workflow in your request. For example,
+in Codex:
 
-```sh
-pnpm test:harnesses --harness codex --task repair
-pnpm test:harnesses
+```text
+$aop-mode Fix the first page skipping items. Reproduce the bug before
+editing, preserve the public API, and show the failing and passing checks.
 ```
 
-Compatibility is a claim about a **specific task and version**. Read the
-[latest local evidence](/aop-mode/evidence/latest/) before assuming a workflow is covered.
+In Claude Code and interactive Copilot CLI, use `/aop-mode` instead.
+[Installation](/aop-mode/getting-started/) covers discovery and invocation differences.
 
-## Built with credit
+<Diagram
+  title="From request to workflow"
+  caption="You choose when to invoke aop-mode. The entrypoint loads instructions for your coding agent and selects a playbook for the task."
+  source={`flowchart TD
+    A[You invoke aop-mode] --> B[Load runtime instructions]
+    B --> C[Select a task playbook]
+    C --> D[Agent follows the workflow]`}
+/>
 
-Built from [Lauren Tan's original pstack](https://github.com/cursor/plugins/tree/main/pstack):
-focused skills, deliberate playbooks, and proof that the work behaves as intended.
-aop-mode is an independent project with its own activation policy, adapters, and
-evaluation suite. [Read the credits](/aop-mode/credits/).
+## Start with a small task
+
+[Install aop-mode](/aop-mode/getting-started/) in one project, then
+[fix your first bug](/aop-mode/first-workflow/). The walkthrough follows a pagination
+error from reproduction to verification, with a concrete expected result.
+
+For the mechanism behind the command, read [how aop-mode works](/aop-mode/workflow/).
+If you already know which workflow you need, choose one from the
+[skill catalog](/aop-mode/catalog/), such as `tdd`, `how`, or `interrogate`.
+
+## Check what has been tested
+
+The evaluation suite runs coding agents in disposable task workspaces and checks
+the files and behavior they leave behind. It covers a pagination repair, an
+access-control review, and an ordinary edit that should leave aop-mode inactive.
+
+[Inspect the evidence](/aop-mode/evidence/latest/) for recorded CLI versions and
+outcomes. A passing task establishes that result for that run; other workflows
+and runtime capabilities need their own checks.
+
+## Where the workflows come from
+
+aop-mode is an independent project built on
+[Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack). It bundles
+the pinned original skills, adds personal principles, and adapts invocation and
+tools to each supported coding agent. [Read the credits](/aop-mode/credits/).

@@ -19,7 +19,7 @@ pnpm skills:install codex /absolute/path/to/your-project
 pnpm dev
 ```
 
-Use `claude` or `copilot` for the other targets. Installation copies all 55
+Use `claude` or `copilot` for the other targets. Installation copies all 56
 entrypoints and the complete upstream tree into project-local skill directories.
 Existing skill-name collisions abort before writing anything. No global settings
 are changed. Invoke `$aop-mode` in Codex or `/aop-mode` in Claude Code/Copilot CLI.
@@ -32,6 +32,8 @@ For headless Copilot, explicitly request reading the installed SKILL.md.
 pnpm verify                  # source integrity, packages, types, lint, tests, docs
 pnpm test:docs               # Playwright documentation journeys
 pnpm test:harnesses          # authenticated CLI task matrix; consumes usage
+pnpm eval:workflows --list   # inspect Codex/Copilot workflow contracts; no model calls
+pnpm eval:workflows --task investigation # live routing/delegation eval; consumes usage
 pnpm skills:build            # dist/claude, dist/codex, dist/copilot
 pnpm upstream:check          # hashes, file inventory, executable modes
 pnpm report .eval-artifacts/<run>/summary.json
@@ -57,3 +59,8 @@ workspace; graders and raw logs remain outside it. Claude requires a working log
 Astro Starlight documentation. Strict TypeScript, pnpm, Effect evaluation lifecycle,
 Vitest and Playwright. Requires Node.js 22.14+, Git and authenticated CLIs for live
 runs. Original pstack MIT attribution accompanies every distribution.
+
+[Workflow evaluations](docs/src/content/docs/workflow-evals.md) inspect actual skill
+reads, playbook routing, native subagents, verification, and independent outcomes.
+Compare explicit, installed-inactive, and baseline conditions; missing telemetry
+remains unobservable. Private per-trial reports link verdicts to native event lines.

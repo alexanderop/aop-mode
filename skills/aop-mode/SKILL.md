@@ -20,6 +20,8 @@ During this explicit invocation, also apply the relevant personal principles:
   `../principle-test-at-the-right-layer/SKILL.md`.
 - When designing dependencies or replacing dependencies in tests, read
   `../principle-make-dependencies-explicit/SKILL.md`.
+- When UI variants duplicate behavior or props select different component trees, read
+  `../principle-compose-ui-variants/SKILL.md`.
 
 These are aop-mode additions listed in `personal-catalog.json`, not upstream
 pstack content. Load their supporting references only when needed.

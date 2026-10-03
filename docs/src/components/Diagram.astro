@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  caption: string;
+  source: string;
+}
+const { title, caption, source } = Astro.props;
+---
+<figure class="diagram" data-diagram data-source={source}>
+  <div class="diagram-canvas" role="img" aria-label={title}></div>
+  <figcaption><strong>{title}.</strong> {caption}</figcaption>
+  <details>
+    <summary>Diagram text</summary>
+    <pre>{source}</pre>
+  </details>
+</figure>
+
+<script>
+  import mermaid from 'mermaid';
+
+  let revision = 0;
+  let queue = Promise.resolve();
+  function scheduleDiagrams() {
+    const current = ++revision;
+    queue = queue.then(async () => {
+      if (current !== revision) return;
+      const dark = document.documentElement.dataset.theme === 'dark';
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'base',
+        fontFamily: 'system-ui, sans-serif',
+        themeVariables: {
+          darkMode: dark,
+          primaryColor: dark ? '#203530' : '#edf6f2',
+          primaryTextColor: dark ? '#e7eeeb' : '#20352d',
+          primaryBorderColor: dark ? '#749e8d' : '#53806d',
+          lineColor: dark ? '#a7b6ae' : '#596a62',
+          secondaryColor: dark ? '#24282b' : '#f2f4f5',
+          tertiaryColor: dark ? '#24282b' : '#f2f4f5',
+        },
+        flowchart: { htmlLabels: false, curve: 'linear', useMaxWidth: true },
+      });
+      for (const [index, figure] of [...document.querySelectorAll<HTMLElement>('[data-diagram]')].entries()) {
+        const canvas = figure.querySelector<HTMLElement>('.diagram-canvas');
+        if (!canvas || !figure.dataset.source) continue;
+        try {
+          const { svg } = await mermaid.render(`diagram-${current}-${index}`, figure.dataset.source);
+          if (current !== revision) return;
+          canvas.innerHTML = svg;
+        } catch {
+          canvas.textContent = 'Diagram unavailable. Read the diagram text below.';
+          figure.querySelector('details')?.setAttribute('open', '');
+        }
+      }
+    });
+  }
+  scheduleDiagrams();
+  new MutationObserver(scheduleDiagrams).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+</script>

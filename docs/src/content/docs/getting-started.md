@@ -1,61 +1,92 @@
 ---
-title: Getting started
-description: Install aop-mode into one project and invoke it explicitly.
+title: Install aop-mode
+description: Choose project-local skills or the Claude Code plugin, then invoke a workflow.
 ---
 
-aop-mode installs 52 upstream skills, two personal principles, and its own project-local entrypoint. It does not change your global instructions or
-register a startup hook. Use Node.js 22.14 or newer and pnpm.
+You can install project-local skills for Claude Code, Codex, or Copilot CLI,
+or load the generated Claude Code plugin. You need Node.js 22.14 or newer, pnpm,
+and a checkout of this repository.
 
-## Install from this checkout
+## Install the dependencies
+
+Run this from the aop-mode checkout:
 
 ```sh
 pnpm install --frozen-lockfile
+```
+
+## Install project-local skills
+
+Run the command for the agent you use, replacing the destination with your
+project's absolute path:
+
+```sh
+# Claude Code
 pnpm skills:install claude /absolute/path/to/your-project
+
+# Codex
 pnpm skills:install codex /absolute/path/to/your-project
+
+# Copilot CLI
 pnpm skills:install copilot /absolute/path/to/your-project
 ```
 
-Install only the targets you use. The installer refuses to overwrite an existing
-skill name, before writing any of the package. These are copies: updating this checkout does not silently change installed
-skills. To update, inspect the existing target and replace the installed catalog entries with a reviewed copy. To uninstall, remove
-only the 55 installed catalog directories, preserving unrelated skills.
+The installer copies the upstream skills, personal principles, and aop-mode
+entrypoint into the target project. It refuses existing skill-name collisions
+before writing the package. It does not change global instructions or install
+a startup hook.
 
-| Harness | Installed location | Invocation |
+## Start a fresh session
+
+Open a new coding-agent session in the target project so it discovers the skills.
+Use the invocation for your agent:
+
+| Agent | Installed location | Invocation |
 | --- | --- | --- |
 | Claude Code | `.claude/skills/aop-mode/` | `/aop-mode Fix the pagination bug` |
 | Codex | `.agents/skills/aop-mode/` | `$aop-mode Fix the pagination bug` |
 | Copilot CLI | `.github/skills/aop-mode/` | `/aop-mode Fix the pagination bug` |
 
-Start a fresh session after installation so discovery reflects the new files.
-Some clients also discover another client's skill directories; avoid duplicate
-copies in a shared project if they produce duplicate entries.
+Use the explicit command. A prose request alone may not activate the skill.
+Some clients discover other clients' skill directories too; install only the
+targets you need to avoid duplicate entries.
 
-## Ask for a bounded outcome
+For non-interactive Copilot runs, explicitly request reading the installed
+`.github/skills/aop-mode/SKILL.md`. See the
+[installation reference](/aop-mode/installation-reference/) for tested invocation
+limits, plugin packaging, updates, and removal.
 
-```text
-/aop-mode Fix the first page skipping items. Reproduce it before
-editing, preserve the public API, and show the failing and passing checks.
+## Load the Claude Code plugin
+
+From the aop-mode checkout, build the packages:
+
+```sh
+pnpm skills:build
 ```
 
-```text
-/aop-mode Review the access-control change. Report concrete defects
-with triggers and file locations. Do not modify files.
+This generates `dist/claude`, including its `.claude-plugin/plugin.json` manifest
+and bundled skills. Start Claude Code from the project where you want to work,
+pointing it at the generated plugin:
+
+```sh
+claude --plugin-dir /absolute/path/to/aop-mode/dist/claude
 ```
 
-## Plugin packaging
+This loads a local plugin for the session. It does not install the package from a
+marketplace. The recorded live evaluation results cover project-local skill
+installation; plugin loading has not been established by those runs.
 
-In Codex, use `$aop-mode` in place of `/aop-mode`. Prefer the explicit command:
-with implicit invocation disabled, asking in prose alone may leave a skill
-unavailable to the model's skill tool, as observed in Copilot CLI 1.0.80.
-For non-interactive Copilot runs, explicitly ask it to read
-`.github/skills/aop-mode/SKILL.md`; see [the tested headless behavior](/aop-mode/testing/).
+The other build outputs, `dist/codex` and `dist/copilot`, are skill distributions.
+The current builder emits a plugin manifest only for Claude Code.
 
-Run `pnpm skills:build` to generate complete packages at `dist/claude`,
-`dist/codex`, and `dist/copilot`. The Claude package includes its plugin manifest;
-for local plugin loading use `claude --plugin-dir /absolute/path/to/aop-mode/dist/claude`.
-Project-local installation is the tested path, **not marketplace installation**.
-Do not interpret a passing task run as a marketplace compatibility claim.
+## Try a bounded task
 
-Official references: [Codex skills](https://developers.openai.com/codex/skills/),
-[Claude skills](https://code.claude.com/docs/en/skills), and
-[Copilot skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills).
+In Codex, for example:
+
+```text
+$aop-mode Fix the first page skipping items. Reproduce it before editing,
+preserve the public API, and show the failing and passing checks.
+```
+
+Follow [Fix your first bug](/aop-mode/first-workflow/) for a complete example using
+the evaluation suite, or read [how aop-mode works](/aop-mode/workflow/).

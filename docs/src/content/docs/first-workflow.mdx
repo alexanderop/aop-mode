@@ -1,0 +1,96 @@
+---
+title: Fix your first bug
+description: Follow a one-based pagination bug from reproduction to a checked repair.
+---
+
+import Diagram from '../../components/Diagram.astro';
+
+This walkthrough uses the pagination task from aop-mode's evaluation suite.
+The first page should return the first two items, but the starting implementation
+skips them. You will run one repair and inspect the evidence it produces.
+
+You need this checkout installed with `pnpm install --frozen-lockfile`, plus an
+authenticated Codex CLI. The live run consumes provider usage. For installation
+in your own project, follow [the installation guide](/aop-mode/getting-started/).
+
+## Understand the failure
+
+The task starts with this function in `src/page.ts`:
+
+```ts
+export function page<T>(items: readonly T[], number: number, size: number): T[] {
+  if (!Number.isInteger(number) || number < 1 || !Number.isInteger(size) || size < 1) {
+    throw new RangeError('positive integers required');
+  }
+  return items.slice(number * size, number * size + size);
+}
+```
+
+For `page(['a', 'b', 'c'], 1, 2)`, the slice starts at index `2`. It returns
+`['c']`; the expected result is `['a', 'b']`. Page numbers start at one, while
+array indices start at zero.
+
+## Run the repair task
+
+From the aop-mode checkout, run:
+
+```sh
+pnpm test:harnesses --harness codex --task repair --timeout 180
+```
+
+The runner creates a temporary project containing the broken function and a test,
+installs the skills there, and invokes Codex. You do not need to copy the fixture
+into this repository.
+
+The task asks the agent to reproduce the failure, preserve the existing test and
+input validation, repair the function, and run the test again.
+
+<Diagram
+  title="Two separate checks"
+  caption="The agent runs the task's test. After the agent finishes, the runner independently checks the resulting behavior and whether the original test stayed unchanged."
+  source={`flowchart TD
+    A[Prepare broken pagination task] --> B[Agent reproduces and repairs]
+    B --> C[Agent runs the existing test]
+    C --> D[Runner checks the outcome]
+    D --> E[Record result and evidence]`}
+/>
+
+## Inspect the result
+
+The reference repair changes the slice to:
+
+```ts
+return items.slice((number - 1) * size, number * size);
+```
+
+This is the expected solution, **not a transcript of your run**. Inspect the
+run's artifacts under `.eval-artifacts/`. Each task's `result.json` records its
+candidate workspace; open that workspace to review the actual diff.
+
+Check that the original test is unchanged, the first page returns `['a', 'b']`,
+and the agent records both the failing and passing checks. Independent grading
+also checks page boundaries, empty and partial pages, invalid arguments, and
+input mutation.
+
+A `passed` result means the run satisfied the task's checks. A `failed` result
+needs investigation. A `blocked` result, such as an authentication error, means
+the run did not establish a successful repair. Read
+[the evaluation guide](/aop-mode/testing/) for artifact details and limitations.
+
+## Use the workflow in your project
+
+After [installing the skills](/aop-mode/getting-started/), start a fresh coding-agent
+session in your project. Give it a bounded request, naming the behavior and checks:
+
+```text
+$aop-mode Fix the first page skipping items. Reproduce the failure before
+editing. Preserve validation and the public API. Keep existing tests intact,
+and show the checks you ran before and after the change.
+```
+
+Use `/aop-mode` in Claude Code or interactive Copilot CLI. Your normal session
+does not include the evaluation suite's independent grader: review the diff and
+run your project's checks yourself.
+
+Next, read [how aop-mode works](/aop-mode/workflow/) or
+[review a change without editing files](/aop-mode/guides/review-change/).

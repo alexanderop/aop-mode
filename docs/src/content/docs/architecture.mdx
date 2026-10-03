@@ -3,6 +3,20 @@ title: Architecture
 description: Keep workflow policy, harness mechanics, and outcome grading separate.
 ---
 
+import Diagram from '../../components/Diagram.astro';
+
+<Diagram
+  title="How the package is assembled"
+  caption="Original source stays pinned and unmodified. Runtime wrappers expose the packaged skills through explicit entrypoints."
+  source={`flowchart TD
+ A[Pinned original skills] --> D[Distribution builder]
+ B[Personal principles] --> D
+ C[Runtime contracts] --> D
+ D --> E[Project-local skill wrappers]
+ E --> F[Claude Code, Codex, or Copilot]`}
+/>
+
+
 ```text
 vendor/pstack/           Complete unmodified pinned upstream tree
 upstream.lock.json       Source revision, skill inventory, file hashes and modes

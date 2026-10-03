@@ -6,13 +6,39 @@ export default defineConfig({
   base: '/aop-mode',
   integrations: [starlight({
     title: 'aop-mode',
-    description: 'Your workflow. Your choice. Evidence across coding agents.',
+    description: 'Explicit coding workflows with verification steps.',
     customCss: ['./src/styles/custom.css'],
     sidebar: [
-      { label: 'Start here', items: [{ label: 'Getting started', slug: 'getting-started' }, { label: 'The workflow', slug: 'workflow' }, { label: 'Complete skill catalog', slug: 'catalog' }, { label: 'Personal principles', slug: 'principles' }, { label: 'Runtime compatibility', slug: 'compatibility' }] },
-      { label: 'Writing docs', items: [{ label: 'About technical-writing', slug: 'writing/technical-writing' }, { label: 'Write documentation', slug: 'writing/write-documentation' }] },
-      { label: 'Verify', items: [{ label: 'End-to-end testing', slug: 'testing' }, { label: 'Latest local evidence', slug: 'evidence/latest' }] },
-      { label: 'Build together', items: [{ label: 'Architecture', slug: 'architecture' }, { label: 'Contributing', slug: 'contributing' }, { label: 'Credits & inspiration', slug: 'credits' }] },
+      { label: 'Start', items: [
+        { label: 'Introduction', slug: 'index' },
+        { label: 'Installation', slug: 'getting-started' },
+        { label: 'Fix your first bug', slug: 'first-workflow' },
+      ] },
+      { label: 'Understand', items: [
+        { label: 'How aop-mode works', slug: 'workflow' },
+        { label: 'Personal principles', slug: 'principles' },
+      ] },
+      { label: 'Guides', items: [
+        { label: 'Review a change', slug: 'guides/review-change' },
+        { label: 'Write documentation', slug: 'writing/write-documentation' },
+      ] },
+      { label: 'Reference', collapsed: true, items: [
+        { label: 'Skill catalog', slug: 'catalog' },
+        { label: 'Runtime compatibility', slug: 'compatibility' },
+        { label: 'Installation reference', slug: 'installation-reference' },
+        { label: 'Technical-writing skill', slug: 'writing/technical-writing' },
+      ] },
+      { label: 'Evaluation', items: [
+        { label: 'Run and read evaluations', slug: 'testing' },
+        { label: 'Workflow evaluations', slug: 'workflow-evals' },
+        { label: 'Workflow pilot evidence', slug: 'evidence/workflows' },
+        { label: 'Latest local evidence', slug: 'evidence/latest' },
+      ] },
+      { label: 'Contribute', collapsed: true, items: [
+        { label: 'Architecture', slug: 'architecture' },
+        { label: 'Contributing', slug: 'contributing' },
+        { label: 'Credits & inspiration', slug: 'credits' },
+      ] },
     ],
     expressiveCode: { themes: ['github-dark', 'github-light'] },
   })],
