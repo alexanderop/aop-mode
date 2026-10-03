@@ -42,7 +42,7 @@ export async function installSkill(harness: Harness, workspace: string): Promise
 
 export async function hashSkill(): Promise<string> {
   const hash = createHash('sha256');
-  for (const directory of ['skills/aop-mode', 'runtime', 'vendor/pstack']) {
+  for (const directory of ['skills', 'runtime', 'vendor/pstack']) {
     const base = join(projectRoot, directory);
     for (const path of (await readdir(base, { recursive: true })).sort()) {
       if ((await lstat(join(base, path))).isFile()) hash.update(`${directory}/${path}`).update(await readFile(join(base, path)));

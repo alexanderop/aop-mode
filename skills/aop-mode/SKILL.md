@@ -14,3 +14,12 @@ All 52 upstream skill entrypoints are listed in `catalog.json`. Preserve the
 original workflow and follow its relative references from the original file's
 directory. The runtime contract identifies dependencies that are not portable.
 Do not substitute a shorter workflow for the original.
+
+During this explicit invocation, also apply the relevant personal principles:
+- For frontend test setup, feature verification, or coverage review, read
+  `../principle-test-at-the-right-layer/SKILL.md`.
+- When designing dependencies or replacing dependencies in tests, read
+  `../principle-make-dependencies-explicit/SKILL.md`.
+
+These are aop-mode additions listed in `personal-catalog.json`, not upstream
+pstack content. Load their supporting references only when needed.

@@ -5,12 +5,14 @@ description: Every skill and playbook from the pinned original pstack source.
 
 Pinned pstack v0.15.6 at `23e4138daa01c42d4969f7a5465f82704e64f798`.
 
-49 main skills, three automation skills, and the additional `aop-mode` entrypoint
+49 main skills, three automation skills, two personal principles, and the additional `aop-mode` entrypoint
 are installed for each harness. Original source is byte-for-byte preserved.
 This inventory proves inclusion, not end-to-end execution of every workflow.
 
 | Skill | Source category |
 | --- | --- |
+| `principle-test-at-the-right-layer` | aop-mode principle |
+| `principle-make-dependencies-explicit` | aop-mode principle |
 | `reproduce-and-fix-issues` | automation |
 | `setup-benny` | automation |
 | `triage-issue-reports` | automation |
@@ -63,6 +65,8 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 | `typescript-best-practices` | skill |
 | `unslop` | skill |
 | `why` | skill |
+
+Read [Personal principles](/aop-mode/principles/) for frontend testing, MSW, and dependency injection.
 
 ## Original playbooks
 

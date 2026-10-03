@@ -13,7 +13,9 @@ presentation frontmatter are Cursor metadata, not activation instructions here.
 Read upstream SKILL.md bodies fully, including leaf principles when applied.
 Resolve relative links and scripts from the original upstream file's directory.
 All upstream files are together under this skill's `.upstream/` directory.
-When another bundled skill is named, read its original entrypoint directly from
+Personal principles live beside `aop-mode`; resolve their entrypoints through
+`personal-catalog.json` and their references from their own directories.
+When another upstream bundled skill is named, read its original entrypoint directly from
 `catalog.json`; disabled implicit invocation does not prevent reads needed for
 an explicit request. Do not invoke unrelated installed skills with the same name.
 `aop-mode` routes to `poteto-mode` without rewriting its playbooks. Stop the mode

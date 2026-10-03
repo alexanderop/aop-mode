@@ -14,9 +14,23 @@ for (const harness of harnesses) {
       const lock = await checkImport();
       await writeDistribution(harness, destination);
       const root = join(destination, 'skills');
-      expect((await readdir(root)).sort()).toEqual(['aop-mode', ...lock.skills.map((skill) => skill.name)].sort());
+      const personal = ['principle-make-dependencies-explicit', 'principle-test-at-the-right-layer'];
+      expect((await readdir(root)).sort()).toEqual(['aop-mode', ...personal, ...lock.skills.map((skill) => skill.name)].sort());
+      for (const name of personal) {
+        const source = join('skills', name);
+        for (const file of await readdir(source, { recursive: true })) {
+          if (!(await stat(join(source, file))).isFile() || file === 'agents/openai.yaml') continue;
+          expect(await readFile(join(root, name, file), 'utf8')).toBe(await readFile(join(source, file), 'utf8'));
+        }
+        expect(await readFile(join(root, name, 'agents/openai.yaml'), 'utf8')).toContain('allow_implicit_invocation: false');
+      }
+      const catalog = JSON.parse(await readFile(join(root, 'aop-mode/personal-catalog.json'), 'utf8')) as { name: string; entrypoint: string }[];
+      expect(catalog.map((skill) => skill.name)).toEqual(personal);
+      for (const skill of catalog) {
+        expect(await readFile(join(root, 'aop-mode', skill.entrypoint), 'utf8')).toContain(`name: ${skill.name}\n`);
+      }
       const discoverable = (await readdir(root, { recursive: true })).filter((path) => path.endsWith('/SKILL.md') && !path.split('/').some((part) => part.startsWith('.')));
-      expect(discoverable).toHaveLength(lock.skills.length + 1);
+      expect(discoverable).toHaveLength(lock.skills.length + personal.length + 1);
       for (const skill of lock.skills) {
         const entry = await readFile(join(root, skill.name, 'SKILL.md'), 'utf8');
         expect(entry).toContain(`name: ${skill.name}\n`);

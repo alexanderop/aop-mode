@@ -3,7 +3,7 @@
 Independent workflow project inspired by Lauren Tan's pstack. See NOTICE.md.
 No startup hooks, global instruction edits, or implicit activation. Preserve explicit invocation.
 
-- Pinned original source: `vendor/pstack/`, never hand-edit. Entry alias: `skills/aop-mode/`. Runtime translations: `runtime/`. Full packaging: `src/distribution.ts`. Harness-specific mechanics: `src/harnesses.ts`.
+- Pinned original source: `vendor/pstack/`, never hand-edit. Entry alias: `skills/aop-mode/`. Personal principles and their references: sibling directories under `skills/`. Runtime translations: `runtime/`. Full packaging: `src/distribution.ts`. Harness-specific mechanics: `src/harnesses.ts`.
 - Evaluation lifecycle: `src/runner.ts`; independent outcome checks: `src/grade.ts`.
 - Keep logs and graders outside candidate workspaces. A zero exit is not a pass.
 - Each task must reject the broken fixture and accept its reference solution before live runs.

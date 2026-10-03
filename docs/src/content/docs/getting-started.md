@@ -3,7 +3,7 @@ title: Getting started
 description: Install aop-mode into one project and invoke it explicitly.
 ---
 
-aop-mode installs 52 upstream skills plus its own project-local entrypoint. It does not change your global instructions or
+aop-mode installs 52 upstream skills, two personal principles, and its own project-local entrypoint. It does not change your global instructions or
 register a startup hook. Use Node.js 22.14 or newer and pnpm.
 
 ## Install from this checkout
@@ -18,7 +18,7 @@ pnpm skills:install copilot /absolute/path/to/your-project
 Install only the targets you use. The installer refuses to overwrite an existing
 skill name, before writing any of the package. These are copies: updating this checkout does not silently change installed
 skills. To update, inspect the existing target and replace the installed catalog entries with a reviewed copy. To uninstall, remove
-only the 53 installed catalog directories, preserving unrelated skills.
+only the 55 installed catalog directories, preserving unrelated skills.
 
 | Harness | Installed location | Invocation |
 | --- | --- | --- |
