@@ -1,0 +1,100 @@
+---
+title: End-to-end testing
+description: Test real harness behavior using isolated workspaces and independent acceptance checks.
+---
+
+## Three different kinds of evidence
+
+| Layer | What it proves | Command |
+| --- | --- | --- |
+| Offline runner tests | Graders reject bad outputs; process deadlines and cleanup work; existing skills are preserved | `pnpm test` |
+| Live harness tasks | A real authenticated CLI reads the installed skill and produces the required outcome | `pnpm test:harnesses` |
+| Documentation journeys | Navigation, attribution, and mobile layout work in a browser | `pnpm test:docs` |
+
+## Run a task
+
+Sign in to each CLI using its normal login flow first. Live tests consume your
+provider's usage. Credentials are not stored in the repository.
+
+If Claude reports an expired OAuth session, run `claude auth login` yourself, then
+rerun `pnpm test:harnesses --harness claude`. Authentication failures remain blocked
+until a real task succeeds; the runner does not refresh or copy credentials.
+
+```sh
+pnpm test:harnesses --harness codex --task repair --timeout 180
+pnpm test:harnesses --harness claude --task review
+pnpm test:harnesses --harness copilot --task explicit-only
+pnpm test:harnesses
+```
+
+Use `--model <id>` with a single harness to test a particular available model.
+Otherwise the CLI resolves its default. The runner records the requested model
+and retains provider events; it does not guess a model, usage cost, or billing rate.
+
+## Task contracts
+
+**Repair:** fix one-based pagination. The original visible test must stay unchanged.
+Independent checks cover page boundaries, partial and empty pages, input mutation,
+and invalid arguments. A successful final report alone cannot pass.
+
+**Review:** find the inverted ownership check in a private-document reader. The
+report must identify the defect and every candidate file must stay unchanged.
+
+**Explicit-only:** create one exact text file without invoking optional workflows.
+The runner checks changed files, the final response, and recorded skill access.
+This is a regression check for unwanted activation, not proof of hidden reasoning.
+
+## Run lifecycle
+
+1. Create a fresh temporary candidate Git repository and install the skill there.
+2. Save a baseline outside the candidate workspace.
+3. Launch the selected CLI with a deadline, collecting its event stream.
+4. Require the adapter's successful terminal event, then grade the outcome separately.
+5. Terminate the process group and retain evidence, including failures and timeouts.
+
+The default matrix runs at most three harnesses concurrently, with tasks sequential
+inside each harness. Every run has a unique directory under `.eval-artifacts/`.
+Each `result.json` records its candidate workspace so you can inspect it. Workspaces
+are retained in the OS temporary directory; remove only a run's recorded directory
+after inspection. Raw logs stay ignored and must not be published without review.
+
+Codex uses `$aop-mode` and Claude uses `/aop-mode`. On Copilot CLI 1.0.80, the
+non-interactive `-p` path did not reliably expand `/aop-mode`, and its model skill
+tool could not invoke a skill marked `disable-model-invocation`. The headless
+adapter therefore names the installed `.github/skills/aop-mode/SKILL.md` and asks
+the agent to read it. It does not inline instructions or the expected report schema.
+This tests installed-file execution, not native slash expansion.
+
+The report decoder accepts a raw JSON object or one JSON code block with surrounding
+prose. It rejects ambiguous multiple code blocks and still validates every required
+field. Markdown wrapping does not bypass the independent behavior checks.
+
+## Trust boundaries and limitations
+
+Fresh workspaces prevent cross-task file contamination. They are **not an OS
+sandbox**. The CLIs use their existing login and may discover personal skills or
+managed configuration. Claude uses project settings and an empty explicit MCP
+configuration; Codex ignores user config; Copilot disables built-in MCP servers.
+For reproducible CI, use a dedicated runner account or container and controlled
+CLI versions. Do not run untrusted tasks on your personal machine.
+
+The independent grader lives outside the candidate workspace, but the native
+runner does not provide hostile-agent isolation. The review grader checks a known
+defect contract, not arbitrary review quality. Repair evidence checks recorded
+execution and the final claim; it is not yet a full temporal event proof.
+
+`passed`, `failed`, and `blocked` remain distinct. Authentication errors, timeouts,
+missing CLIs, and unknown terminal formats cannot become green compatibility cells.
+
+## Publish a sanitized snapshot
+
+```sh
+pnpm report .eval-artifacts/<run>/summary.json
+pnpm docs:build
+```
+
+This copies only task results, versions, durations, and skill hashes into the docs.
+It does not upload transcripts or deploy the website.
+You can supply multiple summary files; the newest supplied result wins per task.
+Missing task cells remain “not run.” Interrupted runs retain per-task evidence and
+a partial summary; interrupted or unstarted tasks do not count as passing.

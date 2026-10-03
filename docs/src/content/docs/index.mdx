@@ -1,0 +1,53 @@
+---
+title: A deliberate workflow. On your terms.
+description: Explicit coding workflows for Claude Code, Codex, and Copilot CLI, backed by task-level evidence.
+template: splash
+hero:
+  title: A deliberate workflow. On your terms.
+  tagline: Bring the same intent to Claude Code, Codex, and Copilot CLI. Invoke it when you need it. Check what each agent actually delivers.
+  actions:
+    - text: Start with aop-mode
+      link: /getting-started/
+      icon: right-arrow
+    - text: Inspect the evidence
+      link: /evidence/latest/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="You choose when" icon="approve-check">
+    Explicit invocation. No startup hooks, global mandates, or automatic workflow takeover.
+  </Card>
+  <Card title="The complete pstack skill set" icon="puzzle">
+    All 49 main skills, three automation skills, and 23 original playbooks, with explicit runtime adaptations.
+  </Card>
+  <Card title="Outcomes over claims" icon="document">
+    Each harness runs in a fresh task workspace. Independent checks grade the files and behavior it leaves behind.
+  </Card>
+  <Card title="Evidence you can inspect" icon="magnifier">
+    Record the CLI version, skill revision, task, transcript, and verdict. Failed and blocked runs stay visible.
+  </Card>
+</CardGrid>
+
+## Same task. Three real agents.
+
+The initial suite checks a pagination repair, a read-only access-control review,
+and an ordinary file edit that must leave aop-mode inactive. Run one case while
+developing, or run the full matrix before a release.
+
+```sh
+pnpm test:harnesses --harness codex --task repair
+pnpm test:harnesses
+```
+
+Compatibility is a claim about a **specific task and version**. Read the
+[latest local evidence](/evidence/latest/) before assuming a workflow is covered.
+
+## Built with credit
+
+Built from [Lauren Tan's original pstack](https://github.com/cursor/plugins/tree/main/pstack):
+focused skills, deliberate playbooks, and proof that the work behaves as intended.
+aop-mode is an independent project with its own activation policy, adapters, and
+evaluation suite. [Read the credits](/credits/).

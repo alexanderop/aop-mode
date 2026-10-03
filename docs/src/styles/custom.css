@@ -1,0 +1,22 @@
+:root {
+  --sl-color-accent-low: #092f2c;
+  --sl-color-accent: #2cbca6;
+  --sl-color-accent-high: #b3f1e4;
+  --sl-color-bg: #111715;
+  --sl-color-bg-nav: #141d19;
+  --sl-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d8f5eb;
+  --sl-color-accent: #087962;
+  --sl-color-accent-high: #064c3e;
+  --sl-color-bg: #fafbf8;
+  --sl-color-bg-nav: #f3f6f0;
+}
+.hero { padding-block: clamp(3rem, 8vw, 6.5rem); }
+.hero h1 { max-width: 15ch; letter-spacing: -0.045em; line-height: 1.08; }
+.hero .tagline { max-width: 43rem; }
+.card { border-radius: 0.85rem; }
+.sl-markdown-content :is(h2, h3) { letter-spacing: -0.025em; }
+.sl-markdown-content table { font-size: 0.9rem; }
+.site-title { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-weight: 700; letter-spacing: -0.05em; }

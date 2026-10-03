@@ -1,0 +1,51 @@
+---
+title: Architecture
+description: Keep workflow policy, harness mechanics, and outcome grading separate.
+---
+
+```text
+vendor/pstack/           Complete unmodified pinned upstream tree
+upstream.lock.json       Source revision, skill inventory, file hashes and modes
+runtime/                 Host mechanics and explicit activation overrides
+skills/aop-mode/          Entry alias and optional evaluation evidence format
+src/distribution.ts      Full packages with thin entrypoint wrappers
+src/harnesses.ts          Skill placement, CLI arguments, terminal decoding
+src/process.ts            Deadlines, process-group cleanup, output retention
+src/runner.ts             Candidate setup, execution, grading, run records
+src/tasks.ts              Prompts and starting fixtures
+src/grade.ts              Independent outcome checks
+tests/                   Offline qualification and lifecycle tests
+docs/                    Astro Starlight documentation
+```
+
+## Where to test what
+
+An adapter test checks that a failed terminal event cannot pass. A lifecycle test
+starts a real disposable process to check timeout and descendant cleanup. A grader
+test passes both the known broken fixture and a reference solution through the
+same outcome checks. A live task test exercises the installed CLI end to end.
+
+Package tests verify every installed original file against its locked hash and
+mode on all three targets. Import tests reject missing, modified, and extra files.
+Collision tests protect existing user skills.
+
+Skill discovery, workflow execution, and outcome correctness are different
+questions. The live suite invokes the skill by name on Codex and Claude; the Copilot
+headless adapter points to its installed file. Neither inlines the contents
+or evidence schema; a valid result therefore checks more than a prompt that
+already contains the whole answer. It still does not measure whether the skill
+improves quality compared with an unassisted run. That needs paired experiments.
+
+## Adding a harness
+
+Add the harness identifier, skill location, concrete command builder, and terminal
+decoder. Record the supported CLI version and the installation mechanism. Exercise
+the same qualified tasks before advertising support. Keep feature gaps explicit;
+never translate a missing tool into a fabricated successful action.
+
+## Adding a task
+
+Define an observable contract, a realistic broken or incomplete fixture, and a
+reference outcome. Qualify the grader against both good and bad candidates. Add
+negative cases for tempting shortcuts, such as modifying tests or writing during
+a review. Keep acceptance logic outside the candidate repository.

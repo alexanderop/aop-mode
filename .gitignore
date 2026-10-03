@@ -1,0 +1,10 @@
+node_modules/
+.astro/
+docs/.astro/
+docs/dist/
+.eval-artifacts/
+playwright-report/
+test-results/
+.DS_Store
+
+/dist/

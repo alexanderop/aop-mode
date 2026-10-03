@@ -1,0 +1,39 @@
+{
+  "name": "aop-mode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Explicit agent workflows with evidence across Claude Code, Codex, and Copilot CLI.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev --root docs --host 127.0.0.1 --ignore-lock",
+    "docs:build": "astro build --root docs",
+    "docs:preview": "astro preview --root docs --host 127.0.0.1 --ignore-lock",
+    "check": "tsc --noEmit && oxlint src tests scripts",
+    "test": "vitest run",
+    "verify": "pnpm upstream:check && pnpm skills:build && pnpm check && pnpm test && pnpm docs:build",
+    "skills:install": "tsx scripts/install.ts",
+    "test:harnesses": "tsx scripts/evaluate.ts",
+    "test:docs": "playwright test",
+    "report": "tsx scripts/report.ts",
+    "skills:build": "tsx scripts/build-skills.ts",
+    "upstream:check": "tsx scripts/import-pstack.ts --check"
+  },
+  "engines": {
+    "node": ">=22.14"
+  },
+  "dependencies": {
+    "effect": "^4.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/markdown-remark": "^7.3.1",
+    "@astrojs/starlight": "^0.42.5",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "astro": "^7.3.5",
+    "oxlint": "^1.86.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
