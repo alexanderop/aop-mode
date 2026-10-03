@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # aop-mode
 
-Read `runtime.md` fully, then read `upstream/skills/poteto-mode/SKILL.md` fully.
+Read `runtime.md` fully, then read `.upstream/skills/poteto-mode/SKILL.md` fully.
 Follow its routing, principles, and complete playbooks for the requested task,
 using the runtime contract for platform mechanics and activation policy.
 

@@ -91,4 +91,4 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 - `worktree-cleanup`
 
 The complete pack also contains two agent prompts, 35 reference files, and 21
-script files. See [runtime compatibility](/compatibility/) for external dependencies.
+script files. See [runtime compatibility](/aop-mode/compatibility/) for external dependencies.

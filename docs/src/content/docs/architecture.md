@@ -49,3 +49,9 @@ Define an observable contract, a realistic broken or incomplete fixture, and a
 reference outcome. Qualify the grader against both good and bad candidates. Add
 negative cases for tempting shortcuts, such as modifying tests or writing during
 a review. Keep acceptance logic outside the candidate repository.
+
+The installed reference tree lives in `aop-mode/.upstream/`. Codex skips hidden
+folders during skill discovery, so only the explicit-only wrappers are exposed.
+A visible nested source tree would expose duplicate original skills and bypass
+the wrapper activation policy. Native `skills/list` verified 53 entrypoints after
+this correction.

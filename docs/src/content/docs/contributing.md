@@ -25,7 +25,7 @@ Codex's `agents/openai.yaml` policy. Older generic skill validators may reject t
 extension; do not remove explicit-invocation controls to satisfy an outdated
 allowlist. Verify behavior in the supported harnesses.
 
-See [credits](/credits/) before reusing upstream material. Preserve author notices
+See [credits](/aop-mode/credits/) before reusing upstream material. Preserve author notices
 and describe adaptations. aop-mode is independently maintained and has no automatic
 sync relationship with pstack.
 
@@ -36,3 +36,14 @@ Do not edit `vendor/pstack`. Import a reviewed immutable upstream commit using
 The importer refuses to replace modified vendored files. Review the lock and source
 diff, update the catalog and attribution revision, then run `pnpm verify`. Put
 platform adaptations in `runtime/`, not in original workflow text.
+
+## Publish documentation
+
+GitHub Actions verifies each pull request. A successful run on `main` also deploys
+`docs/dist/` to [GitHub Pages](https://alexanderop.github.io/aop-mode/).
+The workflow runs `pnpm verify` and the documentation browser tests before upload.
+
+The site uses `/aop-mode/` as its base path in development and production. Prefix
+internal Markdown links with `/aop-mode/`. Starlight adds the base path to sidebar
+links defined by slug. Run `pnpm dev` and open the URL printed by Astro to preview
+changes locally.

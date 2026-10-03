@@ -1,7 +1,14 @@
-name: Verify
-on: [push, pull_request]
+name: Verify and deploy docs
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: verify-pages-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   offline:
     runs-on: ubuntu-latest
@@ -18,8 +25,28 @@ jobs:
       - run: pnpm verify
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:docs
+      - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: docs/dist
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: browser-evidence
           path: test-results/
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: offline
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

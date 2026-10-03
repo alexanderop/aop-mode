@@ -12,7 +12,7 @@ global rules, or persist a mode reminder. Upstream `mode`, `reminder`, `paths`, 
 presentation frontmatter are Cursor metadata, not activation instructions here.
 Read upstream SKILL.md bodies fully, including leaf principles when applied.
 Resolve relative links and scripts from the original upstream file's directory.
-All upstream files are together under this skill's `upstream/` directory.
+All upstream files are together under this skill's `.upstream/` directory.
 When another bundled skill is named, read its original entrypoint directly from
 `catalog.json`; disabled implicit invocation does not prevent reads needed for
 an explicit request. Do not invoke unrelated installed skills with the same name.
@@ -34,8 +34,8 @@ requires unavailable model diversity, mark that portion blocked.
 ## Delegation and tools
 
 Translate `Task`, `generalPurpose`, `AskQuestion`, and todo tools into the actual
-tools available in this session. Read `upstream/agents/poteto-agent.md` or
-`upstream/agents/comment-sicko.md` into delegate instructions for the requested
+tools available in this session. Read `.upstream/agents/poteto-agent.md` or
+`.upstream/agents/comment-sicko.md` into delegate instructions for the requested
 role. Use fresh delegates with explicit scope, ownership, and the same upstream
 rubric. Preserve read-only restrictions and parent permissions. If the host has
 no delegation facility, identify the blocked parallel step; never present a

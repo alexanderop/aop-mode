@@ -9,7 +9,7 @@ and its full task playbooks. Invoke an individual skill such as `tdd`, `how`,
 
 The package contains all 49 main skills, including 24 principle skills, plus all
 three Benny automation skills. Nothing from the pinned upstream tree is omitted.
-See the [complete catalog](/catalog/) for names and the 23 playbooks.
+See the [complete catalog](/aop-mode/catalog/) for names and the 23 playbooks.
 
 ## Explicit activation
 
@@ -36,5 +36,13 @@ webhook automations, transcript storage, mixed-model availability, and external
 `cursor-team-kit` dependencies still require host capabilities or configuration.
 The adapter reports unsupported steps instead of pretending they ran.
 
-Read the [compatibility limits](/compatibility/) and [live evidence](/evidence/latest/).
+Read the [compatibility limits](/aop-mode/compatibility/) and [live evidence](/aop-mode/evidence/latest/).
 A small task suite cannot establish end-to-end success for all 52 workflows.
+
+## Writing documentation
+
+Use `technical-writing` to structure and write documentation, with `unslop` for
+prose cleanup. Read [about the skill](/aop-mode/writing/technical-writing/) or follow
+[the documentation guide](/aop-mode/writing/write-documentation/) for prompts and Starlight
+verification commands. These guides document the existing skill; they do not add
+a new upstream playbook.

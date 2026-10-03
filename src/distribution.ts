@@ -15,7 +15,7 @@ export async function writeDistribution(harness: Harness, destination: string): 
   const bundle = join(skills, 'aop-mode');
   await mkdir(bundle, { recursive: true });
   await cp(join(distributionRoot, 'skills/aop-mode'), bundle, { recursive: true });
-  await cp(join(distributionRoot, 'vendor/pstack'), join(bundle, 'upstream'), { recursive: true });
+  await cp(join(distributionRoot, 'vendor/pstack'), join(bundle, '.upstream'), { recursive: true });
   await writeFile(join(bundle, 'catalog.json'), `${JSON.stringify(lock.skills, null, 2)}\n`);
   await cp(join(distributionRoot, 'upstream.lock.json'), join(bundle, 'upstream.lock.json'));
   await cp(join(distributionRoot, 'NOTICE.md'), join(bundle, 'NOTICE.md'));
@@ -28,7 +28,7 @@ export async function writeDistribution(harness: Harness, destination: string): 
     const description = /^description: ([^\n]+(?:\n[ \t]+[^\n]*)*)/m.exec(source)?.[1];
     if (!description || description === '>' || description === '|') throw new Error(`Unsupported description: ${skill.name}`);
     await mkdir(target, { recursive: true });
-    await writeFile(join(target, 'SKILL.md'), `---\nname: ${skill.name}\ndescription: ${description}\ndisable-model-invocation: true\n---\n\n# ${skill.name}\n\nRead ../aop-mode/runtime.md fully, then read ../aop-mode/upstream/${skill.entrypoint} fully.\nFollow that original skill for this explicit task, using the runtime contract for\nplatform mechanics. Resolve all relative references and scripts from the original\nfile's directory, not this wrapper. Do not substitute a summary of the workflow.\n`);
+    await writeFile(join(target, 'SKILL.md'), `---\nname: ${skill.name}\ndescription: ${description}\ndisable-model-invocation: true\n---\n\n# ${skill.name}\n\nRead ../aop-mode/runtime.md fully, then read ../aop-mode/.upstream/${skill.entrypoint} fully.\nFollow that original skill for this explicit task, using the runtime contract for\nplatform mechanics. Resolve all relative references and scripts from the original\nfile's directory, not this wrapper. Do not substitute a summary of the workflow.\n`);
   }
   for (const name of ['aop-mode', ...lock.skills.map((skill) => skill.name)]) {
     await mkdir(join(skills, name, 'agents'), { recursive: true });

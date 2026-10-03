@@ -1,5 +1,7 @@
 # aop-mode
 
+[Documentation](https://alexanderop.github.io/aop-mode/)
+
 The complete original **[pstack by Lauren Tan](https://github.com/cursor/plugins/tree/main/pstack)**
 skill set, packaged for explicit use in Claude Code, Codex, and GitHub Copilot CLI.
 Independent project, not a GitHub fork or official port. See [NOTICE.md](NOTICE.md).

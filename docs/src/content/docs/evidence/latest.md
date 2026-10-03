@@ -25,7 +25,7 @@ Recorded starts: 2026-10-03T06:04:25.966Z through 2026-10-03T06:08:14.008Z. Each
 
 Skill hashes: `b829b1d2d4323032cc67d3d2de5f22e4396a001fb7965bac538fae1f4f207ecf`, `e1c62e2668bed8cf68db738b5e1b30a42a636004b33b06a39ae47a6ed0efad9c`.
 
-Raw transcripts and workspaces remain local. These tests cover project-local skill installation and task behavior, not marketplace installation, IDE integration, or multi-agent coordination. Copilot headless runs explicitly point to the installed skill file; this does not prove native slash-command expansion. See [the evaluation design](/testing/) for limitations.
+Raw transcripts and workspaces remain local. These tests cover project-local skill installation and task behavior, not marketplace installation, IDE integration, or multi-agent coordination. Copilot headless runs explicitly point to the installed skill file; this does not prove native slash-command expansion. See [the evaluation design](/aop-mode/testing/) for limitations.
 
 ## Scope of this snapshot
 

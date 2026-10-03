@@ -15,15 +15,17 @@ for (const harness of harnesses) {
       await writeDistribution(harness, destination);
       const root = join(destination, 'skills');
       expect((await readdir(root)).sort()).toEqual(['aop-mode', ...lock.skills.map((skill) => skill.name)].sort());
+      const discoverable = (await readdir(root, { recursive: true })).filter((path) => path.endsWith('/SKILL.md') && !path.split('/').some((part) => part.startsWith('.')));
+      expect(discoverable).toHaveLength(lock.skills.length + 1);
       for (const skill of lock.skills) {
         const entry = await readFile(join(root, skill.name, 'SKILL.md'), 'utf8');
         expect(entry).toContain(`name: ${skill.name}\n`);
         expect(entry).toContain('disable-model-invocation: true');
-        expect(entry).toContain(`../aop-mode/upstream/${skill.entrypoint}`);
+        expect(entry).toContain(`../aop-mode/.upstream/${skill.entrypoint}`);
         expect(await readFile(join(root, skill.name, 'agents/openai.yaml'), 'utf8')).toContain('allow_implicit_invocation: false');
       }
       for (const file of lock.files) {
-        const path = join(root, 'aop-mode/upstream', file.path);
+        const path = join(root, 'aop-mode/.upstream', file.path);
         expect(createHash('sha256').update(await readFile(path)).digest('hex'), file.path).toBe(file.sha256);
         expect(Boolean((await stat(path)).mode & 0o111), file.path).toBe(file.mode === '100755');
       }

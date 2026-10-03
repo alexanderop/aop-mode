@@ -35,4 +35,4 @@ Runtime references checked while building this port:
 [Claude subagents](https://code.claude.com/docs/en/sub-agents),
 [Codex skills](https://developers.openai.com/codex/skills), and
 [Copilot CLI skills](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills).
-The [task evidence](/evidence/latest/) records what was actually exercised.
+The [task evidence](/aop-mode/evidence/latest/) records what was actually exercised.

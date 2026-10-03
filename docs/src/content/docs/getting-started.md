@@ -48,7 +48,7 @@ In Codex, use `$aop-mode` in place of `/aop-mode`. Prefer the explicit command:
 with implicit invocation disabled, asking in prose alone may leave a skill
 unavailable to the model's skill tool, as observed in Copilot CLI 1.0.80.
 For non-interactive Copilot runs, explicitly ask it to read
-`.github/skills/aop-mode/SKILL.md`; see [the tested headless behavior](/testing/).
+`.github/skills/aop-mode/SKILL.md`; see [the tested headless behavior](/aop-mode/testing/).
 
 Run `pnpm skills:build` to generate complete packages at `dist/claude`,
 `dist/codex`, and `dist/copilot`. The Claude package includes its plugin manifest;
