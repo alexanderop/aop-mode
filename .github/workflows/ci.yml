@@ -23,6 +23,12 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm verify
+      - run: pnpm plugins:pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aop-mode-plugins
+          path: dist/releases/
+          if-no-files-found: error
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:docs
       - uses: actions/configure-pages@v5

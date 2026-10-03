@@ -19,7 +19,9 @@
     "skills:build": "tsx scripts/build-skills.ts",
     "upstream:check": "tsx scripts/import-pstack.ts --check",
     "eval:workflows": "tsx scripts/evaluate-workflows.ts",
-    "eval:regrade": "tsx scripts/regrade-workflow.ts"
+    "eval:regrade": "tsx scripts/regrade-workflow.ts",
+    "plugins:pack": "tsx scripts/package-plugins.ts",
+    "eval:plugins": "tsx scripts/evaluate-plugin-install.ts"
   },
   "engines": {
     "node": ">=22.14"
@@ -32,6 +34,7 @@
     "@astrojs/starlight": "^0.42.5",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.4",
+    "ajv": "^8.20.0",
     "astro": "^7.3.5",
     "mermaid": "^12.1.0",
     "oxlint": "^1.86.0",

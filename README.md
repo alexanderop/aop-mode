@@ -11,7 +11,30 @@ and every supporting file are pinned to pstack v0.15.6 at
 `23e4138daa01c42d4969f7a5465f82704e64f798`. The 160 original files remain unchanged.
 `aop-mode` adds an entrypoint to the full poteto-mode router. No startup hooks.
 
-## Install
+## Install the plugin
+
+Ready-built packages contain all skills and require no pnpm on the user's machine.
+The verification workflow produces the `aop-mode-plugins` download artifact. See
+[plugin installation](https://alexanderop.github.io/aop-mode/plugin-installation/)
+for Claude Code, Codex, and Copilot CLI instructions.
+
+To build an archive locally:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm plugins:pack
+```
+
+Extract `dist/releases/aop-mode-0.1.0.tar.gz` and follow its `INSTALL.md`.
+Every client package has a standard Agent Plugins manifest; the Claude package
+also carries its compatibility manifest. The archive includes local marketplace
+catalogs, attribution, and a SHA-256 checksum alongside it.
+
+```sh
+pnpm eval:plugins  # isolated CLI install, discovery, update and removal; no model calls
+```
+
+## Install project-local skills
 
 ```sh
 pnpm install --frozen-lockfile

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "aop-mode",
+  "version": "0.1.0",
+  "description": "Explicit coding workflows adapted from Lauren Tan's pstack, with independent outcome checks.",
+  "author": { "name": "Alexander Opalic" },
+  "homepage": "https://alexanderop.github.io/aop-mode/",
+  "repository": "https://github.com/alexanderop/aop-mode",
+  "license": "MIT",
+  "keywords": ["skills", "workflows", "pstack"]
+}

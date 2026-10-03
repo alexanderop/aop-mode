@@ -1,11 +1,15 @@
 ---
 title: Install aop-mode
-description: Choose project-local skills or the Claude Code plugin, then invoke a workflow.
+description: Choose a plugin package or project-local skills for your coding agent.
 ---
 
-You can install project-local skills for Claude Code, Codex, or Copilot CLI,
-or load the generated Claude Code plugin. You need Node.js 22.14 or newer, pnpm,
-and a checkout of this repository.
+For Claude Code, Codex, and Copilot CLI, you can either
+[install the ready-built plugin](/aop-mode/plugin-installation/) or copy skills
+into one project. The plugin route uses the client's plugin manager and needs no
+source build when you have the archive.
+
+The project-local route below needs Node.js 22.14 or newer, pnpm, and a checkout
+of this repository.
 
 ## Install the dependencies
 
@@ -55,29 +59,6 @@ For non-interactive Copilot runs, explicitly request reading the installed
 `.github/skills/aop-mode/SKILL.md`. See the
 [installation reference](/aop-mode/installation-reference/) for tested invocation
 limits, plugin packaging, updates, and removal.
-
-## Load the Claude Code plugin
-
-From the aop-mode checkout, build the packages:
-
-```sh
-pnpm skills:build
-```
-
-This generates `dist/claude`, including its `.claude-plugin/plugin.json` manifest
-and bundled skills. Start Claude Code from the project where you want to work,
-pointing it at the generated plugin:
-
-```sh
-claude --plugin-dir /absolute/path/to/aop-mode/dist/claude
-```
-
-This loads a local plugin for the session. It does not install the package from a
-marketplace. The recorded live evaluation results cover project-local skill
-installation; plugin loading has not been established by those runs.
-
-The other build outputs, `dist/codex` and `dist/copilot`, are skill distributions.
-The current builder emits a plugin manifest only for Claude Code.
 
 ## Try a bounded task
 

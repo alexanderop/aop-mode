@@ -12,6 +12,7 @@ export default defineConfig({
       { label: 'Start', items: [
         { label: 'Introduction', slug: 'index' },
         { label: 'Installation', slug: 'getting-started' },
+        { label: 'Install the plugin', slug: 'plugin-installation' },
         { label: 'Fix your first bug', slug: 'first-workflow' },
       ] },
       { label: 'Understand', items: [
@@ -30,6 +31,7 @@ export default defineConfig({
       ] },
       { label: 'Evaluation', items: [
         { label: 'Run and read evaluations', slug: 'testing' },
+        { label: 'Plugin installation', slug: 'plugin-evaluation' },
         { label: 'Workflow evaluations', slug: 'workflow-evals' },
         { label: 'Workflow pilot evidence', slug: 'evidence/workflows' },
         { label: 'Latest local evidence', slug: 'evidence/latest' },

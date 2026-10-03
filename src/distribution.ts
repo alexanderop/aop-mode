@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkImport } from '../scripts/import-pstack.js';
 import type { Harness } from './types.js';
+import { readPluginManifest } from './plugin-manifest.js';
 
 export const distributionRoot = fileURLToPath(new URL('../', import.meta.url));
 export const harnesses: readonly Harness[] = ['claude', 'codex', 'copilot'];
@@ -11,6 +12,11 @@ const policy = 'interface:\n  display_name: "aop-mode skill"\npolicy:\n  allow_i
 /** Build into a caller-owned empty directory; never mutate the pinned source. */
 export async function writeDistribution(harness: Harness, destination: string): Promise<void> {
   const lock = await checkImport();
+  const manifest = await readPluginManifest();
+  await writeFile(join(destination, 'plugin.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  await cp(join(distributionRoot, 'LICENSE'), join(destination, 'LICENSE'));
+  await cp(join(distributionRoot, 'NOTICE.md'), join(destination, 'NOTICE.md'));
+
   const localNames = (await readdir(join(distributionRoot, 'skills'))).filter((name) => name !== 'aop-mode').sort();
   for (const name of localNames) {
     if (lock.skills.some((skill) => skill.name === name)) throw new Error(`Local skill shadows upstream: ${name}`);
@@ -45,6 +51,7 @@ export async function writeDistribution(harness: Harness, destination: string): 
   await writeFile(join(destination, 'distribution.json'), `${JSON.stringify({ harness, upstream: lock.revision, version: lock.version, skillCount: lock.skills.length + localNames.length + 1, activation: 'explicit-only' }, null, 2)}\n`);
   if (harness === 'claude') {
     await mkdir(join(destination, '.claude-plugin'), { recursive: true });
-    await cp(join(distributionRoot, 'packaging/claude-plugin.json'), join(destination, '.claude-plugin/plugin.json'));
+    const { $schema: _schema, ...metadata } = manifest;
+    await writeFile(join(destination, '.claude-plugin/plugin.json'), `${JSON.stringify({ ...metadata, skills: './skills/' }, null, 2)}\n`);
   }
 }

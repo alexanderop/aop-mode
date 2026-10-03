@@ -1,29 +1,65 @@
 ---
 title: Installation reference
-description: Update, remove, and package project-local skills, with runtime invocation details.
+description: Package formats, updates, removal, and runtime invocation details.
 ---
 
-## Updates and removal
+## Package formats
 
-Install only the targets you use. The installer refuses to overwrite an existing
-skill name, before writing any of the package. These are copies: updating this checkout does not silently change installed
-skills. To update, inspect the existing target and replace the installed catalog entries with a reviewed copy. To uninstall, remove
-only the 56 installed catalog directories, preserving unrelated skills.
+`pnpm skills:build` creates `dist/claude`, `dist/codex`, and `dist/copilot`.
+Each has an [Agent Plugins 1.0.0](https://agent-plugins.org/) `plugin.json` and
+`skills/` at its root. Metadata comes from `packaging/plugin.json`, validated
+against a locally pinned copy of the standard's JSON Schema.
 
-## Plugin packaging
+Claude's package also has `.claude-plugin/plugin.json`, generated from the same
+metadata. The skills and original pstack source stay at the plugin root, not
+inside the manifest directory. Runtime instructions differ by client, so choose
+the package built for your client.
 
-In Codex, use `$aop-mode` in place of `/aop-mode`. Prefer the explicit command:
-with implicit invocation disabled, asking in prose alone may leave a skill
-unavailable to the model's skill tool, as observed in Copilot CLI 1.0.80.
-For non-interactive Copilot runs, explicitly ask it to read
-`.github/skills/aop-mode/SKILL.md`; see [the tested headless behavior](/aop-mode/testing/).
+`pnpm plugins:pack` builds a fresh archive and SHA-256 checksum in `dist/releases/`.
+It includes the packages, installation instructions, LICENSE, NOTICE.md, and local
+marketplace catalogs for each client. The original pstack license remains in each
+package's `skills/aop-mode/.upstream/LICENSE`.
 
-Run `pnpm skills:build` to generate complete packages at `dist/claude`,
-`dist/codex`, and `dist/copilot`. The Claude package includes its plugin manifest;
-for local plugin loading use `claude --plugin-dir /absolute/path/to/aop-mode/dist/claude`.
-Project-local installation is the tested path, **not marketplace installation**.
-Do not interpret a passing task run as a marketplace compatibility claim.
+## Plugin updates and removal
 
-Official references: [Codex skills](https://developers.openai.com/codex/skills/),
-[Claude skills](https://code.claude.com/docs/en/skills), and
-[Copilot skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills).
+Keep the extracted archive in a stable location. For a new release, extract it,
+review it, and register the new folder as the local marketplace. Use the client's
+update or reinstall command and start a fresh session. Replacing a downloaded
+archive alone does not update an installed plugin.
+
+The installation evaluation exercises an actual changed version and file, using
+`claude plugin update aop-mode@aop-mode-local`,
+`codex plugin add aop-mode@aop-mode-local`, and
+`copilot plugin update aop-mode@aop-mode-local`.
+
+Remove the plugin using the command for your client:
+
+```sh
+claude plugin uninstall aop-mode@aop-mode-local
+codex plugin remove aop-mode@aop-mode-local
+copilot plugin uninstall aop-mode@aop-mode-local
+```
+
+## Project-local skill copies
+
+The project-local installer refuses existing skill-name collisions before writing
+anything. Installed skills are copies: updating this checkout does not silently
+change them. To update, inspect and replace the installed catalog entries with a
+reviewed copy. To uninstall, remove only the installed catalog directories and
+preserve unrelated skills.
+
+Use `$aop-mode` in Codex and `/aop-mode` in Claude Code or interactive Copilot CLI
+for project-local copies. Plugin skills can be namespaced; follow the
+[plugin instructions](/aop-mode/plugin-installation/) instead for those installs.
+
+For non-interactive Copilot runs using project-local copies, explicitly request
+reading `.github/skills/aop-mode/SKILL.md`. The existing outcome suite establishes
+installed-file execution, not native slash expansion. See
+[the tested headless behavior](/aop-mode/testing/).
+
+## References
+
+- [Agent Plugins specification](https://agent-plugins.org/specification)
+- [OpenAI plugin packaging](https://developers.openai.com/plugins/build/plugins)
+- [Claude Code manifest reference](https://code.claude.com/docs/en/plugins-reference)
+- [Copilot CLI plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference)

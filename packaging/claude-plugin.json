@@ -1,8 +1,0 @@
-{
-  "name": "aop-mode",
-  "version": "0.1.0",
-  "description": "Explicit coding workflows with independent end-to-end evidence.",
-  "author": { "name": "Alexander Opalic" },
-  "license": "MIT",
-  "skills": "./skills/"
-}
