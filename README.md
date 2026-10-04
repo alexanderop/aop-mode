@@ -42,7 +42,7 @@ pnpm skills:install codex /absolute/path/to/your-project
 pnpm dev
 ```
 
-Use `claude` or `copilot` for the other targets. Installation copies all 58
+Use `claude` or `copilot` for the other targets. Installation copies all 61
 entrypoints and the complete upstream tree into project-local skill directories.
 Existing skill-name collisions abort before writing anything. No global settings
 are changed. Invoke `$aop-mode` in Codex or `/aop-mode` in Claude Code/Copilot CLI.
@@ -53,9 +53,15 @@ Use `$asd` to restate the previous answer in simplified technical language. Use
 `$visual` (or `/visual` in Claude Code/Copilot CLI) to turn an answer or topic into
 a dark HTML explainer and open it in the browser. For example:
 `$visual explain how this project's evaluation runner works`. The visual skill
-includes an article template with diagrams, a contents tree, and Shiki code
+uses `asd` for writing and includes an article template with diagrams, a contents tree, and Shiki code
 highlighting through a pinned CDN module. The article remains readable offline;
 syntax highlighting requires network access.
+
+Use `$improve-codebase-architecture` to survey an existing codebase and open a
+visual report of ranked refactoring opportunities. Add an area to narrow the
+review, for example `$improve-codebase-architecture src/runner.ts`. It traces
+real callers, explains proposed boundaries, and identifies migration risks and
+verification needs. Application code changes require an implementation request.
 
 ## Verify and build
 

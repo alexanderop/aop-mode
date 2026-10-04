@@ -26,5 +26,8 @@ During this explicit invocation, also apply the relevant personal principles:
 - When UI variants duplicate behavior or props select different component trees, read
   `../principle-compose-ui-variants/SKILL.md`.
 
+- When designing, implementing, or reviewing UI appearance and interactions, read
+  `../principle-design-calm-interfaces/SKILL.md`.
+
 These are aop-mode additions listed in `personal-catalog.json`, not upstream
 pstack content. Load their supporting references only when needed.

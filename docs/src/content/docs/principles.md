@@ -1,14 +1,14 @@
 ---
 title: Personal principles
-description: Frontend testing, explicit dependencies, functional core design, and UI composition in aop-mode.
+description: Frontend testing, explicit dependencies, functional core design, UI composition, and calm interface design in aop-mode.
 ---
 
-These four principles are aop-mode additions. The original pstack source remains
+These five principles are aop-mode additions. The original pstack source remains
 unchanged. Each principle has a short skill entrypoint and a supporting reference,
 packaged for Claude Code, Codex, and Copilot.
 
 An explicit `aop-mode` invocation loads them when the task concerns frontend testing,
-dependency design, functional core design, or UI composition. They can also be requested individually by their full skill
+dependency design, functional core design, UI composition, or calm interface design. They can also be requested individually by their full skill
 name. They do not install startup hooks or activate outside the requested task.
 
 ## Test at the Right Layer
@@ -61,9 +61,22 @@ shows confirm and edit dialogs, a typed local provider, and a convenience wrappe
 It covers styling and element composition while keeping simple components simple.
 The provider example teaches state coordination, not production dialog accessibility.
 
+## Design Calm Interfaces
+
+`principle-design-calm-interfaces` gives the user's work the strongest visual
+presence. Use neutral surfaces, semantic color tokens, consistent spacing, and
+clear typography to establish hierarchy. Match density to each region's task,
+and keep necessary information readable across selection and overlay states.
+
+Its [calm interface design reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-design-calm-interfaces/references/calm-interface-design.md)
+includes an illustrative CSS palette and navigation state example, practical
+review guidance, and links to Linear's design writing. Preserve the product's
+identity and verify interactions in the running app. Dark mode and Linear's
+specific stack are not requirements.
+
 ## Verification status
 
-Packaging checks cover all four principles, their references, explicit invocation
+Packaging checks cover all five principles, their references, explicit invocation
 policy, and the unchanged upstream files for each harness. This is distribution
 coverage, not evidence that a live agent follows these principles correctly.
 See [the evaluation guide](/aop-mode/testing/) for how behavioral evidence is gathered.

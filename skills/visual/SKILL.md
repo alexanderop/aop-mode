@@ -18,11 +18,20 @@ subjects, use primary sources and link claims to them. Preserve uncertainty,
 conditions, and warnings. Label illustrative code and simplified models clearly.
 Never invent an author, publication date, benchmark, or verified result.
 
-## Write an article
+## Use asd for the writing
+
+Read [../asd/SKILL.md](../asd/SKILL.md) fully before drafting. Use its writing
+rules for the article's prose, headings, captions, and control labels. Review the
+finished text with those same rules. Keep writing guidance in `asd`; this skill
+owns the article structure, HTML presentation, interactions, and browser delivery.
+
+Apply `asd` to the article being created, including when the user supplies a new
+topic. Its standalone instruction to rewrite the previous answer and return only
+that rewrite does not replace this skill's HTML artifact and delivery workflow.
 
 Lead with what the thing does and the problem it solves. Develop one running
 example through connected paragraphs, diagrams, and small code samples. Explain
-what each example shows. Give concepts consistent names and use plain language.
+what each example shows.
 Choose section names for the topic, not a fixed report format. Include a short
 contents tree when the article is long enough to need navigation.
 

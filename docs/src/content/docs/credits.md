@@ -33,5 +33,10 @@ change activation and host mechanics; they do not claim Cursor feature parity.
 helped inform the research into cross-harness packaging. Its code and automatic
 routing hook are not included. No endorsement by either upstream project is implied.
 
+The local `improve-codebase-architecture` skill adapts
+[Matt Pocock's architecture survey](https://github.com/mattpocock/skills/blob/d81f3a183412e71a5b1e84ca21bc1a35eea03a60/skills/engineering/improve-codebase-architecture/SKILL.md)
+to aop-mode's writing, visual reports, and explicit invocation. Its MIT license
+is retained in the skill directory and every generated distribution.
+
 See `NOTICE.md`, `LICENSE`, `vendor/pstack/LICENSE`, and `upstream.lock.json` in
 this checkout for attribution and reproducible provenance.

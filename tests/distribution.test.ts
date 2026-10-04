@@ -16,7 +16,9 @@ for (const harness of harnesses) {
       const root = join(destination, 'skills');
       const personal = [
         'asd',
+        'improve-codebase-architecture',
         'principle-compose-ui-variants',
+        'principle-design-calm-interfaces',
         'principle-functional-core',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',

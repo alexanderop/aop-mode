@@ -5,15 +5,17 @@ description: Every skill and playbook from the pinned original pstack source.
 
 Pinned pstack v0.15.6 at `23e4138daa01c42d4969f7a5465f82704e64f798`.
 
-49 main skills, three automation skills, four personal principles, the `asd` rewrite and `visual` explainer skills, and the additional `aop-mode` entrypoint
+49 main skills, three automation skills, five personal principles, three local workflow skills, and the additional `aop-mode` entrypoint
 are installed for each harness. Original source is byte-for-byte preserved.
 This inventory proves inclusion, not end-to-end execution of every workflow.
 
 | Skill                                                | Source category    |
 | ---------------------------------------------------- | ------------------ |
 | `asd`                                                | aop-mode skill     |
+| `improve-codebase-architecture`                      | aop-mode skill     |
 | `visual`                                             | aop-mode skill     |
 | `principle-compose-ui-variants`                      | aop-mode principle |
+| `principle-design-calm-interfaces`                   | aop-mode principle |
 | `principle-functional-core`                          | aop-mode principle |
 | `principle-test-at-the-right-layer`                  | aop-mode principle |
 | `principle-make-dependencies-explicit`               | aop-mode principle |
@@ -70,7 +72,19 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 | `unslop`                                             | skill              |
 | `why`                                                | skill              |
 
-Read [Personal principles](/aop-mode/principles/) for frontend testing, explicit dependencies, functional core design, and UI composition.
+Read [Personal principles](/aop-mode/principles/) for frontend testing, explicit dependencies, functional core design, UI composition, and calm interface design.
+
+## Architecture survey
+
+Invoke `$improve-codebase-architecture` in Codex or
+`/improve-codebase-architecture` in Claude Code/Copilot CLI. Name a subsystem to
+focus the review, or let recent changes guide the survey. It traces real behavior
+and opens a visual report with ranked proposals, before/after diagrams, migration
+risks, and verification needs. Reports go to the OS temporary directory by default.
+
+Use this skill to choose useful changes in an existing codebase. Use `architect`
+to design a chosen change. The survey leaves application code unchanged unless
+you also request implementation. It uses `visual` and `asd` for presentation.
 
 ## Original playbooks
 
