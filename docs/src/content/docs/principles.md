@@ -1,14 +1,14 @@
 ---
 title: Personal principles
-description: Frontend testing, explicit dependencies, functional core design, UI composition, calm interface design, and mobile-first design in aop-mode.
+description: Frontend testing, explicit dependencies, functional core design, UI composition, calm interface design, mobile-first design, and feature isolation in aop-mode.
 ---
 
-These six principles are aop-mode additions. The original pstack source remains
+These seven principles are aop-mode additions. The original pstack source remains
 unchanged. Each principle has a short skill entrypoint and a supporting reference,
 packaged for Claude Code, Codex, and Copilot.
 
 An explicit `aop-mode` invocation loads them when the task concerns frontend testing,
-dependency design, functional core design, UI composition, calm interface design, or mobile-first design. They can also be requested individually by their full skill
+dependency design, functional core design, UI composition, calm interface design, mobile-first design, or feature isolation. They can also be requested individually by their full skill
 name. They do not install startup hooks or activate outside the requested task.
 
 ## Test at the Right Layer
@@ -94,9 +94,21 @@ on Luke Wroblewski's [Mobile First](https://mobile-first.abookapart.com/02-intro
 (2011), distinguishing the book's lasting ideas from historical device assumptions
 and aop-mode implementation guidance.
 
+## Isolate Features
+
+`principle-isolate-features` keeps business capabilities discoverable and sibling
+features independent. The application composes their public APIs; shared code
+cannot depend on features. Import checks enforce the policy in verification and CI.
+
+Its [feature boundaries reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-isolate-features/references/feature-boundaries.md)
+shows Vue products/cart composition, shallow ownership, and a checker fixture
+matrix. It covers hidden auto-import dependencies, incremental adoption, and
+preserving Electron process authority. It draws on alexop.dev's architecture
+articles and identifies the additional aop-mode policies.
+
 ## Verification status
 
-Packaging checks cover all six principles, their references, explicit invocation
+Packaging checks cover all seven principles, their references, explicit invocation
 policy, and the unchanged upstream files for each harness. This is distribution
 coverage, not evidence that a live agent follows these principles correctly.
 See [the evaluation guide](/aop-mode/testing/) for how behavioral evidence is gathered.

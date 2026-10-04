@@ -21,6 +21,7 @@ for (const harness of harnesses) {
         'principle-design-calm-interfaces',
         'principle-design-mobile-first',
         'principle-functional-core',
+        'principle-isolate-features',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
         'visual',
