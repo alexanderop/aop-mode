@@ -29,7 +29,7 @@ jobs:
           name: aop-mode-plugins
           path: dist/releases/
           if-no-files-found: error
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install --with-deps chrome
       - run: pnpm test:docs
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'

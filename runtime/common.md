@@ -68,6 +68,19 @@ serial self-review as independent agents.
   This independent project uses the bundled pinned source. Do not assume the
   consuming project's origin contains pstack.
 
+## Browser target and verification scope
+
+Use Google Chrome as the sole browser target for browser interaction, visual
+verification, and automated browser tests. Add other browsers only when explicitly
+requested by the user or required by the consuming repository.
+
+Do not expand verification to Safari, WebKit, Firefox, or Edge automatically.
+If Chrome is unavailable, report the blocker instead of switching browsers.
+
+Choose checks proportional to the change. Run the smallest relevant tests and
+required repository checks. Once they pass, stop unless new evidence justifies
+further verification.
+
 ## Evidence
 
 Report actual tools, models, substitutions, skipped or blocked steps, and observed

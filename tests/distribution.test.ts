@@ -19,6 +19,7 @@ for (const harness of harnesses) {
         'improve-codebase-architecture',
         'principle-compose-ui-variants',
         'principle-design-calm-interfaces',
+        'principle-design-mobile-first',
         'principle-functional-core',
         'principle-make-dependencies-explicit',
         'principle-test-at-the-right-layer',
@@ -27,6 +28,13 @@ for (const harness of harnesses) {
       expect((await readdir(root)).sort()).toEqual(
         ['aop-mode', ...personal, ...lock.skills.map((skill) => skill.name)].sort(),
       );
+      for (const name of await readdir(root)) {
+        const metadata = await readFile(join(root, name, 'agents/openai.yaml'), 'utf8');
+        expect(metadata, `${harness}/${name} has its own name in the skill picker`).toContain(
+          `display_name: ${JSON.stringify(name)}\n`,
+        );
+        expect(metadata).toContain('allow_implicit_invocation: false');
+      }
       for (const name of personal) {
         const source = join('skills', name);
         for (const file of await readdir(source, { recursive: true })) {

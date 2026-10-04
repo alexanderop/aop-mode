@@ -15,6 +15,8 @@ an interface. A restrained, coherent system helps them recognize what matters
 and act confidently as the product grows.
 
 - Start with the task. Identify the main content, primary action, navigation, and supporting information. Give each an intentional level of emphasis. Keep recurring actions in predictable places near the content they affect.
+- Make interface text earn its place. It must help users act, decide, or understand the current state. Do not add welcome paragraphs, automatic subtitles, or explanations of obvious controls. Show secondary explanations on demand; keep persistent labels, actionable errors, and consequential action details visible. Preserve the user's actual content and useful visible action labels instead of replacing everything with icons.
+- Before finishing, review each explanatory sentence: what could the user get wrong without it? Remove it if there is no concrete answer. Fix unclear labels or interaction structure before adding prose. Use task needs rather than a fixed word limit.
 - Use neutral surfaces and a limited accent palette. Assign semantic tokens to surfaces, text, borders, selection, focus, and status. Let color communicate meaning; pair status colors with text or recognizable symbols.
 - Make hierarchy visible through lightness and weight. Distinguish primary content, supporting text, and metadata without making any necessary information unreadable. Check contrast against the actual background, including selected rows and elevated panels.
 - Keep surface layers legible. Use small background differences, fine borders, and restrained shadows to explain navigation, content, and overlays. Add a card or separator when it clarifies a real grouping.
@@ -29,6 +31,6 @@ and act confidently as the product grows.
 they can do next, even when the screen contains substantial information?
 
 Read [Calm interface design](references/calm-interface-design.md) when choosing
-visual tokens or reviewing a screen. It includes a CSS example, contextual state
+visual tokens or reviewing a screen. It includes a UI-copy reduction example, a CSS example, contextual state
 rules, and Linear design references. This complements Compose UI Variants, which
 covers component structure and shared behavior.

@@ -1,14 +1,14 @@
 ---
 title: Personal principles
-description: Frontend testing, explicit dependencies, functional core design, UI composition, and calm interface design in aop-mode.
+description: Frontend testing, explicit dependencies, functional core design, UI composition, calm interface design, and mobile-first design in aop-mode.
 ---
 
-These five principles are aop-mode additions. The original pstack source remains
+These six principles are aop-mode additions. The original pstack source remains
 unchanged. Each principle has a short skill entrypoint and a supporting reference,
 packaged for Claude Code, Codex, and Copilot.
 
 An explicit `aop-mode` invocation loads them when the task concerns frontend testing,
-dependency design, functional core design, UI composition, or calm interface design. They can also be requested individually by their full skill
+dependency design, functional core design, UI composition, calm interface design, or mobile-first design. They can also be requested individually by their full skill
 name. They do not install startup hooks or activate outside the requested task.
 
 ## Test at the Right Layer
@@ -67,6 +67,10 @@ The provider example teaches state coordination, not production dialog accessibi
 presence. Use neutral surfaces, semantic color tokens, consistent spacing, and
 clear typography to establish hierarchy. Match density to each region's task,
 and keep necessary information readable across selection and overlay states.
+Keep interface copy purposeful: omit redundant introductions and explanations of
+obvious controls, reveal optional detail on demand, and preserve labels, errors,
+and decision consequences. Before finishing, remove explanatory sentences that
+do not prevent a concrete misunderstanding.
 
 Its [calm interface design reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-design-calm-interfaces/references/calm-interface-design.md)
 includes an illustrative CSS palette and navigation state example, practical
@@ -74,9 +78,25 @@ review guidance, and links to Linear's design writing. Preserve the product's
 identity and verify interactions in the running app. Dark mode and Linear's
 specific stack are not requirements.
 
+## Design Mobile First
+
+`principle-design-mobile-first` starts with the essential task under constraints
+of space, attention, and connectivity. Prioritize useful content, reduce input
+effort, and enhance the layout when more room becomes available. Preserve task
+access and recovery across screen sizes and input methods.
+Review copy at narrow widths so unnecessary prose does not push the task down
+the screen. Preserve primary content and readable labels rather than enforcing
+a word limit or replacing every action with an icon.
+
+Its [mobile-first design reference](https://github.com/alexanderop/aop-mode/blob/main/skills/principle-design-mobile-first/references/mobile-first-design.md)
+includes an appointment form, fluid CSS, and observable review criteria. It draws
+on Luke Wroblewski's [Mobile First](https://mobile-first.abookapart.com/02-introduction/)
+(2011), distinguishing the book's lasting ideas from historical device assumptions
+and aop-mode implementation guidance.
+
 ## Verification status
 
-Packaging checks cover all five principles, their references, explicit invocation
+Packaging checks cover all six principles, their references, explicit invocation
 policy, and the unchanged upstream files for each harness. This is distribution
 coverage, not evidence that a live agent follows these principles correctly.
 See [the evaluation guide](/aop-mode/testing/) for how behavioral evidence is gathered.

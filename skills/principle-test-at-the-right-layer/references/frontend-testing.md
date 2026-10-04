@@ -4,6 +4,12 @@ Use this reference for layer selection, project setup, dependency control, and
 executable acceptance scenarios. Preserve an existing repository's package
 manager and test conventions; these are defaults for new frontend projects.
 
+Use Google Chrome as the sole browser target, including interactive and visual
+checks. Add other browsers only when explicitly requested by the user or required
+by the consuming repository. If Chrome is unavailable, report the blocker instead
+of switching browsers. Run the smallest relevant tests and required repository
+checks; stop once they pass unless new evidence justifies further verification.
+
 ## Choose the proof before the tool
 
 | Failure to catch                                              | Scope and environment         | Dependency strategy                                   |
@@ -37,12 +43,12 @@ through E2E or invent fixed unit/browser/E2E coverage percentages.
 ## Set up a new Vue/Vite project
 
 1. Inspect scripts, lockfile, Vite plugins, aliases, and existing tests first. Keep compatible versions of Vitest and its browser provider. Add only missing development dependencies: `vitest`, `@vitest/browser-playwright`, `vitest-browser-vue`, `@playwright/test`, `playwright-bdd`, and `msw` where HTTP tests need it. Use the app's Vue plugin.
-2. Define separate Vitest projects named `unit` and `browser`, with non-overlapping includes such as `test/unit/**/*.test.ts` and `test/browser/**/*.test.ts`. Unit uses `environment: 'node'`. Browser uses `browser.enabled: true`, `provider: playwright()` from `@vitest/browser-playwright`, and a headless Chromium instance. Share relevant application aliases, plugins, and styles instead of creating a second implementation of the app configuration.
+2. Define separate Vitest projects named `unit` and `browser`, with non-overlapping includes such as `test/unit/**/*.test.ts` and `test/browser/**/*.test.ts`. Unit uses `environment: 'node'`. Browser uses `browser.enabled: true`, `provider: playwright()` from `@vitest/browser-playwright`, and a single headless Google Chrome instance through the provider's Chrome channel. Share relevant application aliases, plugins, and styles instead of creating a second implementation of the app configuration.
 3. If HTTP adapters need Node integration coverage, add an `integration` project with its own MSW setup file. Do not attach HTTP mocking to the pure unit project.
 4. For Nuxt, use its supported test-utils configuration for Nuxt-aware tests; do not copy plain Vue setup over generated imports or framework context. npmx's Nuxt configuration is an example, not a generic starter template.
-5. Configure Playwright with an isolated context per scenario, a `baseURL`, and a `webServer` command that starts the application. For release confidence, build first and test the served build. Make the server command, port, and readiness URL agree. Retain traces on failure; forbid focused tests in CI.
+5. Configure Playwright with a single Google Chrome browser project, an isolated context per scenario, a `baseURL`, and a `webServer` command that starts the application. For release confidence, build first and test the served build. Make the server command, port, and readiness URL agree. Retain traces on failure; forbid focused tests in CI.
 6. Connect Gherkin files and step definitions using `playwright-bdd`'s `defineBddConfig`; use its generated directory as Playwright's `testDir`. Ignore generated specs and regenerate before every E2E run. Define steps with `createBdd()` (or the project's extended Playwright test fixture).
-7. Expose clear commands and run each applicable suite in CI after a frozen-lockfile install. Install the selected Playwright browsers and Linux dependencies in CI. Keep database, account, and fixture state isolated across parallel tests. Upload reports and traces on failures.
+7. Expose clear commands and run each applicable suite in CI after a frozen-lockfile install. Provision Google Chrome and its Linux dependencies in CI; do not install additional browsers unless the user or repository requires them. Keep database, account, and fixture state isolated across parallel tests. Upload reports and traces on failures.
 
 Suggested scripts, once the corresponding projects and configuration exist:
 

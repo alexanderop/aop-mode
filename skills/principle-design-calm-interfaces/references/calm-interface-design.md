@@ -22,6 +22,33 @@ A dense list benefits from aligned columns and repeated row geometry. A reading
 view benefits from room around paragraphs. Choose density per region, then adapt
 for touch and narrow widths. Avoid shrinking every element to make a layout fit.
 
+## Remove interface text that does no work
+
+Keep the title, real content, current state, and clear actions prominent. Do not
+give every screen a welcome paragraph or every heading a subtitle. A sentence
+that merely restates a button label adds reading without resolving uncertainty.
+
+For an empty task list:
+
+| Draft                                                               | Revised                   |
+| ------------------------------------------------------------------- | ------------------------- |
+| Welcome to your task dashboard                                      | Tasks                     |
+| Here you can create, organize, and track your daily tasks.          | Remove this introduction. |
+| You currently have no tasks. Create your first task to get started. | No tasks yet              |
+| Create a new task                                                   | Add task                  |
+
+Keep help when it prevents a specific mistake: accepted file formats, ambiguous
+choices, or the consequences of deletion. Put optional background behind a
+clearly labeled details control that works by touch and keyboard. Do not hide
+information required to make the current decision or rely on hover-only tooltips.
+
+Review each explanatory sentence by asking what a user could get wrong without
+it. Remove text with no concrete purpose, and fix ambiguous labels or structure
+before compensating with more prose. Preserve persistent field labels, useful
+visible action labels, errors with recovery steps, and consequential action
+details. This is not a word quota or a reason to truncate the user's documents,
+messages, or other primary content.
+
 ## Start with semantic tokens
 
 The following CSS is an illustrative dark palette, not sampled Linear colors or
@@ -119,6 +146,7 @@ components instead of accumulating page-specific overrides.
 
 ## Sources and interpretation
 
+- [Progressive Disclosure, Nielsen Norman Group](https://www.nngroup.com/articles/progressive-disclosure/): defer secondary options until needed; the UI-copy example and reduction check above are aop-mode guidance.
 - [How we redesigned the Linear UI, March 2024](https://linear.app/now/how-we-redesigned-the-linear-ui): hierarchy, alignment, cross-view testing, and LCH theme generation from base color, accent, and contrast.
 - [A calmer interface for a product in motion, March 2026](https://linear.app/now/behind-the-latest-design-refresh): quieter navigation, fewer decorative icons and separators, and a warmer neutral palette.
 - [A design reset, March 2024](https://linear.app/now/a-design-reset): accumulated design debt as a product grows.

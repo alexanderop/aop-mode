@@ -7,8 +7,6 @@ import { readPluginManifest } from './plugin-manifest.js';
 
 export const distributionRoot = fileURLToPath(new URL('../', import.meta.url));
 export const harnesses: readonly Harness[] = ['claude', 'codex', 'copilot'];
-const policy =
-  'interface:\n  display_name: "aop-mode skill"\npolicy:\n  allow_implicit_invocation: false\n';
 
 /** Build into a caller-owned empty directory; never mutate the pinned source. */
 export async function writeDistribution(harness: Harness, destination: string): Promise<void> {
@@ -64,7 +62,10 @@ export async function writeDistribution(harness: Harness, destination: string): 
   );
   for (const name of ['aop-mode', ...localNames, ...lock.skills.map((skill) => skill.name)]) {
     await mkdir(join(skills, name, 'agents'), { recursive: true });
-    await writeFile(join(skills, name, 'agents/openai.yaml'), policy);
+    await writeFile(
+      join(skills, name, 'agents/openai.yaml'),
+      `interface:\n  display_name: ${JSON.stringify(name)}\npolicy:\n  allow_implicit_invocation: false\n`,
+    );
   }
   await writeFile(
     join(destination, 'distribution.json'),

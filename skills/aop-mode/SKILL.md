@@ -28,6 +28,8 @@ During this explicit invocation, also apply the relevant personal principles:
 
 - When designing, implementing, or reviewing UI appearance and interactions, read
   `../principle-design-calm-interfaces/SKILL.md`.
+- When designing, implementing, or reviewing responsive web experiences, read
+  `../principle-design-mobile-first/SKILL.md`.
 
 These are aop-mode additions listed in `personal-catalog.json`, not upstream
 pstack content. Load their supporting references only when needed.
