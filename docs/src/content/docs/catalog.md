@@ -5,7 +5,7 @@ description: Every skill and playbook from the pinned original pstack source.
 
 Pinned pstack v0.15.6 at `23e4138daa01c42d4969f7a5465f82704e64f798`.
 
-49 main skills, three automation skills, seven personal principles, three local workflow skills, and the additional `aop-mode` entrypoint
+49 main skills, three automation skills, eight personal principles, three local workflow skills, and the additional `aop-mode` entrypoint
 are installed for each harness. Original source is byte-for-byte preserved.
 This inventory proves inclusion, not end-to-end execution of every workflow.
 
@@ -14,6 +14,7 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 | `asd`                                                | aop-mode skill     |
 | `improve-codebase-architecture`                      | aop-mode skill     |
 | `visual`                                             | aop-mode skill     |
+| `principle-build-resilient-pwas`                     | aop-mode principle |
 | `principle-compose-ui-variants`                      | aop-mode principle |
 | `principle-design-calm-interfaces`                   | aop-mode principle |
 | `principle-design-mobile-first`                      | aop-mode principle |
@@ -74,7 +75,7 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 | `unslop`                                             | skill              |
 | `why`                                                | skill              |
 
-Read [Personal principles](/aop-mode/principles/) for frontend testing, explicit dependencies, functional core design, UI composition, calm interface design, mobile-first design, and feature isolation.
+Read [Personal principles](/aop-mode/principles/) for frontend testing, explicit dependencies, functional core design, UI composition, calm interface design, mobile-first design, PWA resilience, and feature isolation.
 
 ## Architecture survey
 

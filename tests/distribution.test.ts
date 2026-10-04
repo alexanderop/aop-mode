@@ -17,6 +17,7 @@ for (const harness of harnesses) {
       const personal = [
         'asd',
         'improve-codebase-architecture',
+        'principle-build-resilient-pwas',
         'principle-compose-ui-variants',
         'principle-design-calm-interfaces',
         'principle-design-mobile-first',

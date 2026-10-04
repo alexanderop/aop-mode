@@ -38,5 +38,10 @@ The local `improve-codebase-architecture` skill adapts
 to aop-mode's writing, visual reports, and explicit invocation. Its MIT license
 is retained in the skill directory and every generated distribution.
 
+The PWA principle is inspired by [Carl Assmann's Tilly](https://github.com/carlassmann/tilly),
+reviewed at `0bb6bbba42b9e283d0147ea2d0213e4495b00f17`. Its reference links the
+reviewed source and distinguishes observations from original aop-mode guidance.
+No Tilly application code is included, and no runtime certification is implied.
+
 See `NOTICE.md`, `LICENSE`, `vendor/pstack/LICENSE`, and `upstream.lock.json` in
 this checkout for attribution and reproducible provenance.

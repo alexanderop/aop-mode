@@ -31,5 +31,9 @@ During this explicit invocation, also apply the relevant personal principles:
 - When designing, implementing, or reviewing responsive web experiences, read
   `../principle-design-mobile-first/SKILL.md`.
 
+- Only when building, improving, or reviewing a Progressive Web App or its app lifecycle, read
+  `../principle-build-resilient-pwas/SKILL.md`. Do not load it for ordinary responsive
+  websites, native apps, or unrelated work in a PWA repository.
+
 These are aop-mode additions listed in `personal-catalog.json`, not upstream
 pstack content. Load their supporting references only when needed.
