@@ -84,5 +84,5 @@ prompts and the commands used to verify these Starlight docs.
 
 The bundled source is
 `vendor/pstack/skills/technical-writing/SKILL.md`. The public
-[original skill at the pinned revision](https://github.com/cursor/plugins/blob/23e4138daa01c42d4969f7a5465f82704e64f798/pstack/skills/technical-writing/SKILL.md)
+[original skill at the pinned revision](https://github.com/cursor/plugins/blob/e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a/pstack/skills/technical-writing/SKILL.md)
 contains the full rules. See [credits](/aop-mode/credits/) for authorship and licensing.

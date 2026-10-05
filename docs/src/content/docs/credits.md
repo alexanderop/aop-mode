@@ -15,8 +15,8 @@ scripts, agents, and automation files are included in the package.
 
 ## Source and license
 
-The complete v0.15.6 tree is pinned at
-`23e4138daa01c42d4969f7a5465f82704e64f798`. Its 160 files retain their original
+The complete v0.15.9 tree is pinned at
+`e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`. Its 161 files retain their original
 bytes and executable modes. Copyright (c) 2026 Lauren Tan. The original MIT
 license accompanies the vendor tree and every installation.
 

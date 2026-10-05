@@ -5,9 +5,9 @@ aop-mode is an independent project by Alexander Opalic. It packages and adapts
 [Lauren Tan (poteto)](https://github.com/poteto). It is not a GitHub fork, an
 official port, or endorsed by Lauren Tan or Cursor.
 
-The complete original pstack v0.15.6 tree is reproduced without changes in
+The complete original pstack v0.15.9 tree is reproduced without changes in
 `vendor/pstack/` from `cursor/plugins` commit
-`23e4138daa01c42d4969f7a5465f82704e64f798`.
+`e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`.
 Copyright (c) 2026 Lauren Tan. Its MIT license is retained in
 `vendor/pstack/LICENSE` and every generated installation. `upstream.lock.json`
 records every original file's SHA-256 and executable mode.

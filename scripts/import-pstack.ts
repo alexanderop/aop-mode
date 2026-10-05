@@ -5,7 +5,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const repository = 'https://github.com/cursor/plugins.git';
-export const pinnedRevision = '23e4138daa01c42d4969f7a5465f82704e64f798';
+export const pinnedRevision = 'e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a';
 export interface UpstreamFile {
   path: string;
   sha256: string;

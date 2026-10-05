@@ -6,9 +6,9 @@ The complete original **[pstack by Lauren Tan](https://github.com/cursor/plugins
 skill set, packaged for explicit use in Claude Code, Codex, and GitHub Copilot CLI.
 Independent project, not a GitHub fork or official port. See [NOTICE.md](NOTICE.md).
 
-All **49 main skills + 3 automation skills**, **23 playbooks**, two agent prompts,
-and every supporting file are pinned to pstack v0.15.6 at
-`23e4138daa01c42d4969f7a5465f82704e64f798`. The 160 original files remain unchanged.
+All **50 main skills + 3 automation skills**, **23 playbooks**, two agent prompts,
+and every supporting file are pinned to pstack v0.15.9 at
+`e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`. The 161 original files remain unchanged.
 `aop-mode` adds an entrypoint to the full poteto-mode router. No startup hooks.
 
 ## Install the plugin
@@ -25,7 +25,7 @@ pnpm install --frozen-lockfile
 pnpm plugins:pack
 ```
 
-Extract `dist/releases/aop-mode-0.2.0.tar.gz` and follow its `INSTALL.md`.
+Extract `dist/releases/aop-mode-0.3.0.tar.gz` and follow its `INSTALL.md`.
 Every client package has a standard Agent Plugins manifest; the Claude package
 also carries its compatibility manifest. The archive includes local marketplace
 catalogs, attribution, and a SHA-256 checksum alongside it.
@@ -90,7 +90,7 @@ on available host capabilities. Adapters report missing steps. All source remain
 included, including make-bot-ui and Benny.
 
 Live tests cover repair, read-only review and ordinary-task non-activation, not all
-52 workflows or marketplace/IDE/cloud-agent installation. Each run uses a fresh
+53 workflows or marketplace/IDE/cloud-agent installation. Each run uses a fresh
 workspace; graders and raw logs remain outside it. Claude requires a working login.
 
 Astro Starlight documentation. Strict TypeScript, pnpm, Effect evaluation lifecycle,

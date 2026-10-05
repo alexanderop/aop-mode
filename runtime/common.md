@@ -54,7 +54,7 @@ serial self-review as independent agents.
 - Benny's complete automation pack and make-bot-ui are included. Running them
   requires documented external triggers, credentials, services and tools. There
   is no native Claude, Codex, or Copilot replacement for a Cursor webhook here.
-- For recall, reflect, automate-me, and session pickup, use a supplied transcript
+- For correct, recall, reflect, automate-me, and session pickup, use a supplied transcript
   or host-exposed current-workspace history location. Cursor paths are not valid
   defaults here. Never scan unrelated project histories. If no transcript is
   available, report that evidence gap and use only the available record.

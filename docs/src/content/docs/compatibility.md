@@ -8,7 +8,7 @@ entrypoints differ only in which runtime contract they load.
 
 | Capability                                        | Claude Code                                | Codex                                      | Copilot CLI                                   |
 | ------------------------------------------------- | ------------------------------------------ | ------------------------------------------ | --------------------------------------------- |
-| All 52 original skills and supporting files       | Packaged, hash checked                     | Packaged, hash checked                     | Packaged, hash checked                        |
+| All 53 original skills and supporting files       | Packaged, hash checked                     | Packaged, hash checked                     | Packaged, hash checked                        |
 | Explicit entrypoints                              | `/skill-name`                              | `$skill-name`                              | `/skill-name`; file request in headless tests |
 | Native subagents                                  | Available host Agent/Task tool             | Exposed collaboration tool                 | Available task/subagent tool                  |
 | Original two agent roles                          | Delegate instructions                      | Delegate instructions                      | Delegate instructions                         |

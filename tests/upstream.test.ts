@@ -23,15 +23,16 @@ describe('immutable upstream provenance', () => {
   it('retains the entire pinned original including automation skills, references, scripts, agents, and license', async () => {
     const lock = await checkImport(root);
     expect(lock.revision).toBe(pinnedRevision);
-    expect(lock.version).toBe('0.15.6');
-    expect(lock.files).toHaveLength(160);
-    expect(lock.skills.filter((skill) => skill.category === 'skill')).toHaveLength(49);
+    expect(lock.version).toBe('0.15.9');
+    expect(lock.files).toHaveLength(161);
+    expect(lock.skills.filter((skill) => skill.category === 'skill')).toHaveLength(50);
     expect(
       lock.skills.filter((skill) => skill.category === 'automation').map((skill) => skill.name),
     ).toEqual(['reproduce-and-fix-issues', 'setup-benny', 'triage-issue-reports']);
     expect(lock.files.map((file) => file.path)).toEqual(
       expect.arrayContaining([
         'LICENSE',
+        'skills/correct/SKILL.md',
         'agents/comment-sicko.md',
         'agents/poteto-agent.md',
         'skills/poteto-mode/playbooks/orchestrate.md',

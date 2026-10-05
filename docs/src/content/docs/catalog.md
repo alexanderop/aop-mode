@@ -3,9 +3,9 @@ title: Complete skill catalog
 description: Every skill and playbook from the pinned original pstack source.
 ---
 
-Pinned pstack v0.15.6 at `23e4138daa01c42d4969f7a5465f82704e64f798`.
+Pinned pstack v0.15.9 at `e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`.
 
-49 main skills, three automation skills, eight personal principles, three local workflow skills, and the additional `aop-mode` entrypoint
+50 main skills, three automation skills, eight personal principles, three local workflow skills, and the additional `aop-mode` entrypoint
 are installed for each harness. Original source is byte-for-byte preserved.
 This inventory proves inclusion, not end-to-end execution of every workflow.
 
@@ -31,6 +31,7 @@ This inventory proves inclusion, not end-to-end execution of every workflow.
 | `benchmark-checklist`                                | skill              |
 | `blast-radius`                                       | skill              |
 | `bro`                                                | skill              |
+| `correct`                                            | skill              |
 | `create-verification-skill`                          | skill              |
 | `figure-it-out`                                      | skill              |
 | `how`                                                | skill              |

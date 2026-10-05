@@ -1,6 +1,6 @@
 {
   "name": "aop-mode",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Explicit agent workflows with evidence across Claude Code, Codex, and Copilot CLI.",
